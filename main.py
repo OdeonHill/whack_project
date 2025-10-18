@@ -1,6 +1,6 @@
 from website_code import create_app
 
-app = create_app() # Create the Flask app instance
+app = create_app()
 
-if __name__ == '__main__': # If this script is run directly, start the Flask app
+if __name__ == '__main__':
     app.run(debug=True)
