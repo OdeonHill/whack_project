@@ -137,35 +137,6 @@ main {
 
 
 
-        .login-btn {
-
-            padding: 12px 20px;
-
-            background-color: #2e8b57;
-
-            color: #fff;
-
-            border: none;
-
-            border-radius: 5px;
-
-            font-size: 1.2em;
-
-            cursor: pointer;
-
-            width: 100%;
-
-        }
-
-
-
-        .login-btn:hover {
-
-            background-color: #76e076;
-
-        }
-
-
 
         .forgot-password {
 
