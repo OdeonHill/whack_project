@@ -46,19 +46,48 @@
                 When deciding where to invest your money, it’s essential to consider factors like risk tolerance, potential returns, and investment time horizon. Stocks offer the potential for high returns but come with high volatility. Bonds are lower risk but typically provide lower returns. Mutual funds offer diversification and professional management but may have higher fees.
             </p>
 
-            <h2 class="sub-header"> 
-                Other Investment Options
-            </h2>
-            <p class="main-paragraph">
-                Besides stocks, bonds, and mutual funds, there are other investment opportunities to consider. Real estate, for example, can provide rental income and long-term value appreciation. Additionally, commodities like gold and oil can act as hedges against inflation. Cryptocurrencies, though highly speculative, have become increasingly popular among investors looking for high-risk, high-reward opportunities.
-            </p>
 
             <p class="main-paragraph">
                 Before making any investment, it’s important to assess your financial goals, risk tolerance, and time frame. You should also consider working with a financial advisor to create a diversified investment strategy that suits your needs.
             </p>
+
+             <p>Which of these is the least risky?</p>
+            <form id = "q1">
+                <label for = "crypto">Cryptocurrency</label>
+                <input type = "radio" id = "crypto" name = "q1" value = "b">
+                <br>
+                <label for = "bonds">Bonds</label>
+                <input type = "radio" id = "bonds" name = "q1" value = "c">
+                <br>
+                 <label for = "saving">Savings account</label>
+                <input type = "radio" id = "saving" name = "q1" value = "a">
+                <br>
+                <label for = "stocks">Stocks</label>
+                <input type = "radio" id = "stocks" name = "q1" value = "c">
+                <br>
+                <button type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
+		    </form>
+
+             <p id = "output1"></p>
+
+		
+	
     </main>
 		
-		
+		<script>
+        
+        function getQ(q_num, correct, out){
+            console.log("Enter function");
+            if(document.getElementById(correct).checked == true){
+                console.log("Correct");
+                document.getElementById(out).innerHTML="Correct!";
+                //may need db call to update user progress - using q_num param
+            }else{
+                document.getElementById(out).innerHTML="Incorrect";
+                console.log("Incorrect");
+            }
+        }
+    </script>
 		
 	</body>
 </html>
