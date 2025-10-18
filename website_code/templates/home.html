@@ -6,48 +6,161 @@
     <title>Lett-us Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <style>
-        .vertical {
-            border-left: 6px solid black;
-            height: 100vh;        /* full viewport height */
-            position: fixed;      /* stay fixed relative to viewport */
-            top: 0;               /* start at the very top */
-            left: 25%;            /* align with sidebar edge */
-            z-index: 2;           /* appear above background but under main content */
-            transition: left 0.3s ease;  /* smooth movement */
+        /* ---- Basic Reset ---- */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
+
+        /* ---- Top Bar ---- */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #d8f3dc;
+            padding: 10px 20px;
+            border-bottom: 4px solid #40916c;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .logo-txt {
+            font-weight: bold;
+            font-size: 20px;
+            color: #1b4332;
+        }
+
+        .login-btn {
+            background-color: #52b788;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background-color: #40916c;
+        }
+
+        
+
+        /* ---- Vertical Divider ---- */
+        .vertical {
+            border-left: 4px solid #333;
+            height: calc(100vh - 70px);
+            position: fixed;
+            top: 70px;
+            left: 25%;
+            z-index: 2;
+            transition: left 0.3s ease, opacity 0.3s ease;
+        }
+
+        
+
+        .main-header {
+            font-size: 28px;
+            color: #1b4332;
+        }
+
+        
+
+        .features-list h2 {
+            margin-top: 40px;
+        }
+
+            /* --- Center main text section --- */
+        #main {
+            margin-left: 25%;
+            padding: 100px 40px 40px;
+            transition: margin-left 0.3s ease;
+            text-align: center; /* center text content */
+        }
+
+        /* keep paragraphs readable in center */
+        .main-paragraph {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto; /* centers the block */
+        }
+
+        /* center login prompt link */
+        .login-prompt {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* --- Center sidebar content --- */
+        .w3-sidebar {
+            position: fixed;
+            top: 70px;
+            height: calc(100vh - 70px);
+            overflow-y: auto;
+            display: flex;               /* center contents */
+            flex-direction: column;
+            align-items: center;         /* horizontally center */
+            justify-content: flex-start; /* keep top alignment (use 'center' to fully center vertically) */
+            text-align: center;          /* center text inside */
+            padding-top: 20px;           /* breathing space */
+        }
+
     </style>
 </head>
-
-
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
+<<<<<<< HEAD
         <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.home') }}'"alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
         <button class="login-btn" onclick="window.location.href='{{ url_for('views.login') }}'">Login</button>
+=======
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo">
+            <p class="logo-txt">Lett-us Save!</p>
+        </div>
+        <button class="login-btn">Login</button>
+>>>>>>> 53b6c4c00d207442279a4872b6f375004741f3d5
     </header>
 
-    <div class= "vertical" id="vertbar"></div>
+    <!-- Vertical Divider -->
+    <div class="vertical" id="vertbar"></div>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:block; width:25%;" id="mySidebar">
+        <button class="w3-bar-item w3-button w3-large" onclick="w3_close()">Close &times;</button>
+        <div w3-include-html="{{ url_for('static', filename='phone_widget.html') }}"></div>
+    </div>
+
     <!-- Main Content -->
-    <main>
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:block; width:25%;" id="mySidebar">
-            <button class="w3-bar-item w3-button w3-large"
-            onclick="w3_close()">Close &times;</button>
-             <div w3-include-html="{{ url_for('static', filename='phone_widget.html') }}"></div> 
-        </div>
+    <div id="main">
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" 
+                onclick="w3_open()" style="display:none; font-size:30pt">&#9776;</button>
 
-        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" style="display:none; font-size:30pt">&#9776;</button>
+        <h1 class="main-header" style="width:50%">Lett-us teach you, about money!</h1>
+        <p class="main-paragraph">
+            At Lett-us, we believe learning about money should be as refreshing as a crisp salad! 
+            With our intuitive saving trackers and engaging lessons, we'll help you grow your wealth — 
+            just like money growing on trees.
+        </p>
 
-        <div id="main" style="margin-left: 25%;">
-            
-        <h1 class="main-header">Lett-us teach you, about money!</h1>
-        <p class="main-paragraph">At Lett-us, we believe learning about money should be as refreshing as a crisp salad! With our intuitive saving trackers and engaging lessons, we'll help you grow your wealth: just like money growing on trees.</p>
-
-        <!-- Login Prompt Section -->
         <div class="login-prompt">
             <p><a href="{{ url_for('views.login') }}">Already a member? Login here to start growing!</a></p>
         </div>
 
-        <!-- Features List -->
         <div class="features-list">
             <h2>Our Features:</h2>
             <ul>
@@ -58,59 +171,50 @@
                 <li>💸 Learn to Manage Your Money Wisely</li>
             </ul>
         </div>
-    </main>
+    </div>
 
+    <!-- JS for Sidebar and Divider -->
     <script>
-            function w3_open() {
+        function w3_open() {
             document.getElementById("main").style.marginLeft = "25%";
-            document.getElementById("mySidebar").style.width = "25%";
             document.getElementById("mySidebar").style.display = "block";
             document.getElementById("openNav").style.display = 'none';
-            document.getElementById("vertbar").style.display = "block";
-            
-            }
-            function w3_close() {
+            document.getElementById("vertbar").style.opacity = "1";
+        }
+
+        function w3_close() {
             document.getElementById("main").style.marginLeft = "0%";
             document.getElementById("mySidebar").style.display = "none";
             document.getElementById("openNav").style.display = "block";
-            document.getElementById("openNav").style.height = "50pt";
-            document.getElementById("openNav").style.width = "50pt";
-            document.getElementById("vertbar").style.display = "none";
-            }
-        </script>
-		
-		 <script>
-            function includeHTML() {
+            document.getElementById("vertbar").style.opacity = "0";
+        }
+    </script>
+
+    <!-- Include external HTML -->
+    <script>
+        function includeHTML() {
             var z, i, elmnt, file, xhttp;
-            /* Loop through a collection of all HTML elements: */
             z = document.getElementsByTagName("*");
             for (i = 0; i < z.length; i++) {
                 elmnt = z[i];
-                /*search for elements with a certain atrribute:*/
                 file = elmnt.getAttribute("w3-include-html");
                 if (file) {
-                /* Make an HTTP request using the attribute value as the file name: */
-                xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4) {
-                    if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                    if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                    /* Remove the attribute, and call this function once more: */
-                    elmnt.removeAttribute("w3-include-html");
-                    includeHTML();
+                    xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4) {
+                            if (this.status == 200) {elmnt.innerHTML = this.responseText;}
+                            if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
+                            elmnt.removeAttribute("w3-include-html");
+                            includeHTML();
+                        }
                     }
-                }
-                xhttp.open("GET", file, true);
-                xhttp.send();
-                /* Exit the function: */
-                return;
+                    xhttp.open("GET", file, true);
+                    xhttp.send();
+                    return;
                 }
             }
         }
-        </script> 
-
-         <script>
-            includeHTML();
-        </script> 
+        includeHTML();
+    </script>
 </body>
 </html>
