@@ -22,8 +22,8 @@
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
-        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="login-btn">Login</button>
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.home') }}'"alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="login-btn" onclick="window.location.href='{{ url_for('views.login') }}'">Login</button>
     </header>
 
     <div class= "vertical" id="vertbar"></div>
@@ -44,7 +44,7 @@
 
         <!-- Login Prompt Section -->
         <div class="login-prompt">
-            <p><a href="{{ url_for('views.dashboard') }}">Already a member? Login here to start growing!</a></p>
+            <p><a href="{{ url_for('views.login') }}">Already a member? Login here to start growing!</a></p>
         </div>
 
         <!-- Features List -->

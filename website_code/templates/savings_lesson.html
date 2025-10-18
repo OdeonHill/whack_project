@@ -9,8 +9,8 @@
 	
 	  <!-- Top Bar -->
     <header class="top-bar">
-        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="logout-btn">Logout</button>
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('views.home') }}'">Logout</button>
     </header>
     
     <main>

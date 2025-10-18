@@ -240,16 +240,6 @@ main {
             color: #98fb98;
         }
 
-        .lesson {
-                width: 60px;
-                height: 60px;
-                font-size: 1.2em;
-            }
-
-            .line {
-                width: 100px;
-            }
-
         /* Roadmap Styles */
         .roadmap-container {
             display: flex;
@@ -270,6 +260,7 @@ main {
 
         /* Each lesson circle */
         .lesson {
+            position: absolute;
             background-color: #98fb98;
             color: #2e8b57;
             width: 70px;
@@ -283,6 +274,25 @@ main {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             position: relative;
             z-index: 2;
+            margin-bottom: 50;
+        }
+
+        .lesson-last {
+            position: absolute;
+            background-color: #98fb98;
+            color: #2e8b57;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 100px;
         }
 
         .lesson:hover {
@@ -304,41 +314,16 @@ main {
         .lesson:nth-child(even) {
             transform: translateX(50px); /* Move to the right */
         }
-
-        /* Connecting Lines */
-        .line-right {
-            position: absolute;
-            transform: rotate(45deg); 
-            height: 5px;
-            background-color: #76e076;
-            width: 120px;
-            top: 155%;
-            left: 35%;
-            margin-left: 10px;
-            z-index: 1;
-        }
-        
-        .line-left {
-            position: absolute;
-            transform: rotate(135deg); 
-            height: 5px;
-            background-color: #76e076;
-            width: 120px;
-            top: 155%;
-            right: 50%;
-            margin-left: 10px;
-            z-index: 1;
-        }
         
         .lesson-text-right {
           position: absolute;
-          margin-left: 300px;
+          margin-left: 250px;
           color: #2e8b57;
         }
             
         .lesson-text-left {
           position: absolute;
-          margin-right: 300px;
+          margin-right: 250px;
           color: #2e8b57;
         }
 

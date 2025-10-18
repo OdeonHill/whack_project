@@ -9,8 +9,8 @@
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
-        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="logout-btn">Logout</button>
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('views.home') }}'">Logout</button>
     </header>
 
     <!-- Main Content -->
@@ -22,24 +22,27 @@
         <div class="roadmap-container">
             <div class="roadmap">
                 <!-- Lesson 1 -->
-                <div class="lesson">
-                    <div class="line-right"></div>
+                <button class="lesson" onclick="window.location.href='{{ url_for('views.savings_lesson') }}'">
                     <div class="lesson-icon">🌱</div>
                     <div class="lesson-text-right">Saving Methodologies</div>
-                </div>
+                </button>
 
                 <!-- Lesson 2 -->
-                <div class="lesson">
-                    <div class="line-left"></div>
+                <button class="lesson" onclick="window.location.href='{{ url_for('views.investing_lesson') }}'">
                     <div class="lesson-icon">💸</div>
                     <div class="lesson-text-left">Investing 101</div>
-                </div>
+                </button>
 
                 <!-- Lesson 3 -->
-                <div class="lesson">
+                <button class="lesson" onclick="window.location.href='{{ url_for('views.phishing_lesson') }}'">
                     <div class="lesson-icon">📈</div>
                     <div class="lesson-text-right">Phishing 101</div>
-                </div>
+                </button>
+
+                <button class="lesson-last">
+                    <div class="lesson-icon">❓</div>
+                    <div class="lesson-text-right">Coming soon...</div>
+                </button>
 
             </div>
         </div>

@@ -9,8 +9,8 @@
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
-        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="logout-btn">Logout</button>
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('views.home') }}'">Logout</button>
     </header>
 
     <!-- Main Content -->
@@ -20,10 +20,9 @@
 
         <!-- Bubbles Section -->
         <div class="bubble-section">
-            <div class="bubble" onclick="window.location.href='#savings'">Savings</div>
+            <div class="bubble" onclick="window.location.href='{{ url_for('views.tracker') }}'">Savings</div>
             <div class="bubble" onclick="window.location.href='#calculators'">Calculators</div>
-            <div class="bubble" onclick="window.location.href='#lessons'">Lessons</div>
-            <div class="bubble" onclick="window.location.href='#growth'">Growth</div>
+            <div class="bubble" onclick="window.location.href='{{ url_for('views.lessons') }}'">Lessons</div>
         </div>
     </main>
 </body>
