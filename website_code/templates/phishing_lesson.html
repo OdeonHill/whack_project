@@ -40,6 +40,28 @@
                 • Credential Harvesting Websites: Fake login pages designed to steal usernames and passwords.
             </p>
 
+             <p>Bob receives an email from an address she knows to belong to Alice's company. It is formatted similarly to other emails that he has received from Alice's company in the past, but the page linked is not Alice's website. This could be an example of what specific kind of attack? </p>
+            <form id = "q1">
+                <label for = "cred">Credential Harvesting</label>
+                <input type = "radio" id = "cred" name = "q1" value = "b">
+                <br>
+                <label for = "smish">Smishing</label>
+                <input type = "radio" id = "smish" name = "q1" value = "c">
+                <br>
+                 <label for = "spear">Spear Fishing</label>
+                <input type = "radio" id = "spear" name = "q1" value = "a">
+                <br>
+                <label for = "clone">Clone Phishing</label>
+                <input type = "radio" id = "clone" name = "q1" value = "c">
+                <br>
+                <button type = "button" onClick = "getQ(1, 'clone', 'output1')">Submit</button>
+		    </form>
+
+             <p id = "output1"></p>
+
+		
+	
+
             <h3 class="sub-header">
                 How to Spot a Phish
             </h3>
@@ -55,4 +77,43 @@
                 • Verify sender identity: independently look up the company’s contact info before responding. <br>
                 • Use strong, unique passwords and a password manager to avoid reusing credentials. <br>
                 • Enable multi-factor authentication (MFA) wherever possible, it blocks many account takeovers. <br>
-                • Keep devices and sof
+            </p>
+
+             <p>Which of these should you not do when receiving communication in order to prevent fishing?</p>
+            <form id = "q2">
+                <label for = "spelling">Carefully check spelling</label>
+                <input type = "radio" id = "spelling" name = "q2" value = "b">
+                <br>
+                <label for = "links">Click links immediately</label>
+                <input type = "radio" id = "links" name = "q2" value = "c">
+                <br>
+                 <label for = "channel">Confirm whether suspicious activity is genuine by another channel </label>
+                <input type = "radio" id = "channel" name = "q2" value = "a">
+                <br>
+                <label for = "urgent">Be aware of urgent requests for sensitive information</label>
+                <input type = "radio" id = "urgent" name = "q2" value = "c">
+                <br>
+                <button type = "button" onClick = "getQ(2, 'links', 'output2')">Submit</button>
+		    </form>
+
+             <p id = "output2"></p>
+    </main>
+		
+	
+
+
+    <script>
+        
+        function getQ(q_num, correct, out){
+            console.log("Enter function");
+            if(document.getElementById(correct).checked == true){
+                console.log("Correct");
+                document.getElementById(out).innerHTML="Correct!";
+                //may need db call to update user progress - using q_num param
+            }else{
+                document.getElementById(out).innerHTML="Incorrect";
+                console.log("Incorrect");
+            }
+        }
+    </script>
+</body>
