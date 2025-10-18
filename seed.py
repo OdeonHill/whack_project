@@ -7,8 +7,8 @@ app = create_app()
 
 # Seed the User table
 def seed_users():
-    user1 = User(email="rene@gmail.com", password="TH1NK")
-    user2 = User(email="plato@hotmail.com", password="greek!")
+    user1 = User(id=1,email="rene@gmail.com", password="TH1NK")
+    user2 = User(id=2,email="plato@hotmail.com", password="greek!")
 
     db.session.add(user1)
     db.session.add(user2)
@@ -37,7 +37,7 @@ def seed_lessons():
 # Seed the Savings table
 def seed_savings():
     savings1 = Savings(
-        user_email="plato@hotmail.com",
+        user_id = 1,
         goal="Phone",
         total_amount=5000.0,
         current_amount=1500.0,
@@ -52,8 +52,8 @@ def seed_savings():
 
 # Seed the LessonsUser table (example of user progress in lessons)
 def seed_lessons_completed():
-    lesson_user1 = LessonsCompleted(user_email="plato@hotmail.com", lesson_id=1)
-    lesson_user2 = LessonsCompleted(user_email="rene@gmail.com", lesson_id=2)
+    lesson_user1 = LessonsCompleted(id =1,user_id=1, lesson_id=1)
+    lesson_user2 = LessonsCompleted(id =2,user_id=2, lesson_id=2)
     
     db.session.add(lesson_user1)
     db.session.add(lesson_user2)

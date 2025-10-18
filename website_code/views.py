@@ -1,6 +1,8 @@
 from functools import wraps  # <-- Add this import
 from flask import request, Response
 from flask import Blueprint, render_template, make_response
+from flask_login import current_user
+from .models import *
 
 views = Blueprint('views', __name__)
 
@@ -33,7 +35,13 @@ def dashboard():
 
 @views.route('/lessons')
 def lessons():
-    return render_template("lessons.html")
+    user = current_user  # Assuming you're using Flask-Login and current_user is available
+    lessons = Lessons.query.all()  # Get all lessons
+    
+    # Get the lessons that the current user has completed
+    completed_lessons = [lesson.lesson_id for lesson in LessonsCompleted.query.filter_by(user_id=user.id).all()]
+
+    return render_template("lessons.html", lessons=lessons, completed_lessons=completed_lessons)
 
 @views.route('/tracker')
 def tracker():

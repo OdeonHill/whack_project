@@ -277,6 +277,24 @@ main {
             margin-bottom: 50;
         }
 
+        .lesson-completed {
+            position: absolute;
+            background-color: #63a563;
+            color: #164128;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 50;
+        }
+
         .lesson-last {
             position: absolute;
             background-color: #98fb98;

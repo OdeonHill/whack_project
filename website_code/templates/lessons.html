@@ -10,7 +10,7 @@
     <!-- Top Bar -->
     <header class="top-bar">
         <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="logout-btn" onclick="window.location.href='{{ url_for('views.home') }}'">Logout</button>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
     </header>
 
     <!-- Main Content -->
@@ -22,19 +22,19 @@
         <div class="roadmap-container">
             <div class="roadmap">
                 <!-- Lesson 1 -->
-                <button class="lesson" onclick="window.location.href='{{ url_for('views.savings_lesson') }}'">
+                <button class="{% if 1 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.savings_lesson') }}'">
                     <div class="lesson-icon">🌱</div>
                     <div class="lesson-text-right">Saving Methodologies</div>
                 </button>
 
                 <!-- Lesson 2 -->
-                <button class="lesson" onclick="window.location.href='{{ url_for('views.investing_lesson') }}'">
+                <button class="{% if 2 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.investing_lesson') }}'">
                     <div class="lesson-icon">💸</div>
                     <div class="lesson-text-left">Investing 101</div>
                 </button>
 
                 <!-- Lesson 3 -->
-                <button class="lesson" onclick="window.location.href='{{ url_for('views.phishing_lesson') }}'">
+                <button class="{% if 3 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.phishing_lesson') }}'">
                     <div class="lesson-icon">📈</div>
                     <div class="lesson-text-right">Phishing 101</div>
                 </button>
