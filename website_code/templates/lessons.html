@@ -28,10 +28,15 @@
             padding: 15px 20px;
         }
 
-        .logo {
-            font-size: 1.5em;
-            color: #fff;
+        .logo img {
+            height: 60px; /* Adjust the size of the logo */
+            width: auto;
+        }
+
+        .logo-txt {
+            text-align: left;
             font-weight: bold;
+            color: #fff; 
         }
 
         .login-btn {
@@ -184,7 +189,7 @@
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
-        <div class="logo">LETTUCE LOGO</div>
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
         <button class="login-btn">Login</button>
     </header>
 
