@@ -1,6 +1,27 @@
-from flask import Blueprint, render_template
+from functools import wraps  # <-- Add this import
+from flask import request, Response
+from flask import Blueprint, render_template, make_response
 
 views = Blueprint('views', __name__)
+
+# Define the no_cache decorator
+def no_cache(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        # Get the response from the wrapped function
+        response = f(*args, **kwargs)
+        
+        # If the response is a string (e.g., from render_template), wrap it in a response object
+        if isinstance(response, str):
+            response = make_response(response)
+        
+        # Set cache-related headers
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '0'
+        
+        return response
+    return decorated_function
 
 @views.route('/')
 def home():
