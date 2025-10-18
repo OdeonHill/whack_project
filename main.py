@@ -1,14 +1,6 @@
-from flask import Flask
+from website_code import create_app
 
+app = create_app() # Create the Flask app instance
 
-app = Flask(__name__)
-
-
-@app.route("/")
-
-def index():
-
-    return "Congratulations, it's a web app!"
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=8080, debug=True)
+if __name__ == '__main__': # If this script is run directly, start the Flask app
+    app.run(debug=True)
