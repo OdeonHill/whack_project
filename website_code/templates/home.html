@@ -5,7 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lett-us Homepage</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .vertical {
+            border-left: 6px solid black;
+            height: 100vh;        /* full viewport height */
+            position: fixed;      /* stay fixed relative to viewport */
+            top: 0;               /* start at the very top */
+            left: 25%;            /* align with sidebar edge */
+            z-index: 2;           /* appear above background but under main content */
+            transition: left 0.3s ease;  /* smooth movement */
+        }
+    </style>
 </head>
+
+
 <body>
     <!-- Top Bar -->
     <header class="top-bar">
@@ -13,6 +26,7 @@
         <button class="login-btn">Login</button>
     </header>
 
+    <div class= "vertical" id="vertbar"></div>
     <!-- Main Content -->
     <main>
         <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:block; width:25%;" id="mySidebar">
@@ -21,8 +35,10 @@
              <div w3-include-html="{{ url_for('static', filename='phone_widget.html') }}"></div> 
         </div>
 
+        <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" style="display:none; font-size:30pt">&#9776;</button>
+
         <div id="main" style="margin-left: 25%;">
-            <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" style="display:none">&#9776;</button>
+            
         <h1 class="main-header">Lett-us teach you, about money!</h1>
         <p class="main-paragraph">At Lett-us, we believe learning about money should be as refreshing as a crisp salad! With our intuitive saving trackers and engaging lessons, we'll help you grow your wealth: just like money growing on trees.</p>
 
@@ -50,11 +66,16 @@
             document.getElementById("mySidebar").style.width = "25%";
             document.getElementById("mySidebar").style.display = "block";
             document.getElementById("openNav").style.display = 'none';
+            document.getElementById("vertbar").style.display = "block";
+            
             }
             function w3_close() {
             document.getElementById("main").style.marginLeft = "0%";
             document.getElementById("mySidebar").style.display = "none";
-            document.getElementById("openNav").style.display = "inline-block";
+            document.getElementById("openNav").style.display = "block";
+            document.getElementById("openNav").style.height = "50pt";
+            document.getElementById("openNav").style.width = "50pt";
+            document.getElementById("vertbar").style.display = "none";
             }
         </script>
 		
