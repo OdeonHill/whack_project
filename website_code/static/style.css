@@ -139,35 +139,6 @@ main {
 
 
 
-        .login-btn {
-
-            padding: 12px 20px;
-
-            background-color: #2e8b57;
-
-            color: #fff;
-
-            border: none;
-
-            border-radius: 5px;
-
-            font-size: 1.2em;
-
-            cursor: pointer;
-
-            width: 100%;
-
-        }
-
-
-
-        .login-btn:hover {
-
-            background-color: #76e076;
-
-        }
-
-
 
         .forgot-password {
 
@@ -273,6 +244,24 @@ main {
             position: absolute;
             background-color: #98fb98;
             color: #2e8b57;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 50;
+        }
+
+        .lesson-completed {
+            position: absolute;
+            background-color: #63a563;
+            color: #164128;
             width: 70px;
             height: 70px;
             border-radius: 50%;
