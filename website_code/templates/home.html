@@ -3,141 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Leafy Homepage</title>
-    <style>
-        /* General Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f9f4;
-            color: #333;
-        }
-
-        /* Top Bar Styles */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #2e8b57;
-            padding: 15px 20px;
-        }
-
-        .logo img {
-            height: 60px; /* Adjust the size of the logo */
-            width: auto;
-        }
-
-        .logo-txt {
-            text-align: left;
-            font-weight: bold;
-            color: #fff; 
-        }
-
-        .login-btn {
-            padding: 10px 15px;
-            background-color: #98fb98;
-            color: #2e8b57;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-        }
-
-        .login-btn:hover {
-            background-color: #76e076;
-        }
-
-        /* Main Content Styles */
-        main {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .main-header {
-            font-size: 3em;
-            color: #2e8b57;
-            margin-bottom: 20px;
-        }
-
-        .main-paragraph {
-            font-size: 1.2em;
-            color: #555;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        /* Login Section */
-        .login-prompt {
-            margin-top: 5px;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-            color: #2e8b57;
-            font-weight: bold;
-        }
-
-        .login-prompt a {
-            text-decoration: none;
-            color: #76e076;
-            font-weight: bold;
-        }
-
-        .login-prompt a:hover {
-            color: #98fb98;
-        }
-
-        /* Features List */
-        .features-list {
-            margin-top: 40px;
-            text-align: left;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-list ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .features-list li {
-            background-color: #98fb98;
-            color: #2e8b57;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li:before {
-            content: "🌱";
-            margin-right: 10px;
-            font-size: 1.5em;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-
-            .main-header {
-                font-size: 2.5em;
-            }
-
-            .main-paragraph {
-                font-size: 1em;
-            }
-
-            .features-list li {
-                font-size: 1em;
-            }
-        }
-    </style>
+    <title>Lett-us Homepage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <!-- Top Bar -->
@@ -148,20 +15,12 @@
 
     <!-- Main Content -->
     <main>
-        <div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:block; width:25%;" id="mySidebar">
-            <button class="w3-bar-item w3-button w3-large"
-            onclick="w3_close()">Close &times;</button>
-             <div w3-include-html="/statics/phone_widget.html"></div> 
-        </div>
-
-        <div id="main" style="margin-left: 25%;">
-            <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()" style="display:none">&#9776;</button>
         <h1 class="main-header">Lett-us teach you, about money!</h1>
-        <p class="main-paragraph">At Lett-us, we believe learning about money should be as refreshing as a crisp salad! With our intuitive saving trackers and engaging lessons, we'll help you grow your wealth—just like money growing on trees.</p>
+        <p class="main-paragraph">At Lett-us, we believe learning about money should be as refreshing as a crisp salad! With our intuitive saving trackers and engaging lessons, we'll help you grow your wealth: just like money growing on trees.</p>
 
         <!-- Login Prompt Section -->
         <div class="login-prompt">
-            <p><a href="login.html">Already a member? Login here to start growing!</a></p>
+            <p><a href="#login">Already a member? Login here to start growing!</a></p>
         </div>
 
         <!-- Features List -->
@@ -175,55 +34,6 @@
                 <li>💸 Learn to Manage Your Money Wisely</li>
             </ul>
         </div>
-    </div>
     </main>
-
-    <script>
-            function w3_open() {
-            document.getElementById("main").style.marginLeft = "25%";
-            document.getElementById("mySidebar").style.width = "25%";
-            document.getElementById("mySidebar").style.display = "block";
-            document.getElementById("openNav").style.display = 'none';
-            }
-            function w3_close() {
-            document.getElementById("main").style.marginLeft = "0%";
-            document.getElementById("mySidebar").style.display = "none";
-            document.getElementById("openNav").style.display = "inline-block";
-            }
-        </script>
-		
-		 <script>
-            function includeHTML() {
-            var z, i, elmnt, file, xhttp;
-            /* Loop through a collection of all HTML elements: */
-            z = document.getElementsByTagName("*");
-            for (i = 0; i < z.length; i++) {
-                elmnt = z[i];
-                /*search for elements with a certain atrribute:*/
-                file = elmnt.getAttribute("w3-include-html");
-                if (file) {
-                /* Make an HTTP request using the attribute value as the file name: */
-                xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4) {
-                    if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-                    if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-                    /* Remove the attribute, and call this function once more: */
-                    elmnt.removeAttribute("w3-include-html");
-                    includeHTML();
-                    }
-                }
-                xhttp.open("GET", file, true);
-                xhttp.send();
-                /* Exit the function: */
-                return;
-                }
-            }
-        }
-        </script> 
-
-         <script>
-            includeHTML();
-        </script> 
 </body>
 </html>
