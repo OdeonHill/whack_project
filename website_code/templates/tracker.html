@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn">Logout</button>
+    </header>
+    <!-- Savings Tracker Section -->
+    <div class="login-container">
+    <div class="login-form">
+        <h1 class="main-header">Savings Tracker</h1>
+        <p class="main-paragraph">Choose a savings goal to add to your tracker!</p>
+        <!-- Savings Goal Selector -->
+        <div class="goal-selector">
+            <select id="goal-select">
+                <option value="">--Select Savings Goal--</option>
+                <option value="Save for a Phone">Save for a Phone</option>
+                <option value="Save for a Laptop">Save for a Laptop</option>
+                <option value="Save for a Car">Save for a Car</option>
+            </select>
+            <button id="add-btn" class="login-btn">Add Goal</button>
+        </div>
+        <!-- List of Added Goals -->
+        <h2>Your Savings Goals:</h2>
+        <ul id="goal-list">
+            <!-- Dynamically added goal items will appear here -->
+        </ul>
+    </div>
+    </div>
+
+    <script>
+        // Function to add a selected goal to the list
+        document.getElementById('add-btn').addEventListener('click', function() {
+            var select = document.getElementById('goal-select');
+            var selectedGoal = select.value;
+            if (selectedGoal !== "") {
+                addGoalToList(selectedGoal);
+                // Clear the select field after adding the goal
+                select.value = "";
+            } else {
+                alert("Please select a savings goal to add!");
+            }
+        });
+
+        // Function to add a goal to the list dynamically
+        function addGoalToList(goal) {
+            var list = document.getElementById('goal-list');
+            var listItem = document.createElement('li');
+            listItem.textContent = goal;
+
+            // Create a remove button for each goal
+            var removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            removeButton.className = 'remove-btn';
+            removeButton.onclick = function() {
+                list.removeChild(listItem);
+            };
+
+            listItem.appendChild(removeButton);
+            list.appendChild(listItem);
+        }
+    </script>
+
+    <style>
+        /* Styles for the tracker page */
+        .tracker-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tracker-header {
+            text-align: center;
+            color: #333;
+        }
+
+        .goal-selector {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        #goal-select {
+            padding: 10px;
+            width: 200px;
+        }
+
+        #add-btn {
+            padding: 10px 15px;
+            background-color: #98fb98;
+            color: #2e8b57;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        #add-btn:hover {
+            background-color: #76e076;
+        }
+
+        #goal-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #goal-list li {
+            background-color: #e1f7d5;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background-color: #98fb98;
+            color: #2e8b57;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 5px 10px;
+        }
+
+        .remove-btn:hover {
+            background-color: #76e076;
+        }
+    </style>
+
+</body>
+</html>

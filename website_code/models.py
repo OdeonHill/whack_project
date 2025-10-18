@@ -1,6 +1,6 @@
 from website_code import db
 from flask_login import UserMixin
-from sqlalchemy import func Enum
+from sqlalchemy import func
 
 class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True, nullable=False, primary_key=True)

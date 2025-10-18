@@ -73,24 +73,127 @@ main {
     margin-bottom: 20px;
 }
 
-/* Login Section */
-.login-prompt {
-    margin-top: 5px;
-    margin-bottom: 20px;
-    font-size: 1.1em;
-    color: #2e8b57;
-    font-weight: bold;
-}
+.login-container {
 
-.login-prompt a {
-    text-decoration: none;
-    color: #76e076;
-    font-weight: bold;
-}
+            display: flex;
 
-.login-prompt a:hover {
-    color: #98fb98;
-}
+            justify-content: center;
+
+            align-items: center;
+
+            height: 80vh;
+
+        }
+
+
+
+        .login-form {
+
+            background-color: #efe;
+
+            padding: 30px;
+
+            border-radius: 10px;
+
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+            width: 100%;
+
+            max-width: 400px;
+
+            text-align: center;
+
+        }
+
+
+
+        .login-form h2 {
+
+            font-size: 2em;
+
+            color: #2e8b57;
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        .login-input {
+
+            width: 100%;
+
+            padding: 10px;
+
+            margin: 10px 0;
+
+            border: 2px solid #2e8b57;
+
+            border-radius: 5px;
+
+            font-size: 1em;
+
+        }
+
+
+
+        .login-btn {
+
+            padding: 12px 20px;
+
+            background-color: #2e8b57;
+
+            color: #fff;
+
+            border: none;
+
+            border-radius: 5px;
+
+            font-size: 1.2em;
+
+            cursor: pointer;
+
+            width: 100%;
+
+        }
+
+
+
+        .login-btn:hover {
+
+            background-color: #76e076;
+
+        }
+
+
+
+        .forgot-password {
+
+            margin-top: 10px;
+
+            font-size: 0.9em;
+
+            color: #2e8b57;
+
+        }
+
+
+
+        .forgot-password a {
+
+            text-decoration: none;
+
+            color: #76e076;
+
+        }
+
+
+
+        .forgot-password a:hover {
+
+            color: #98fb98;
+
+        }
 
 /* Features List */
         .features-list {
