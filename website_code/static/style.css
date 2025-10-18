@@ -11,6 +11,8 @@ body {
     color: #333;
 }
 
+
+
 /* Top Bar Styles */
 .top-bar {
     display: flex;
@@ -192,6 +194,14 @@ main {
         .forgot-password a:hover {
 
             color: #98fb98;
+
+        }
+
+        .quiz{
+            font-family: Arial, sans-serif;
+            background-color: #f0f9f4;
+            color: #333;
+            font-size: 25pt;
 
         }
 

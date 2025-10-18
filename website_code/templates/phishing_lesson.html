@@ -40,8 +40,10 @@
                 • Credential Harvesting Websites: Fake login pages designed to steal usernames and passwords.
             </p>
 
-             <p>Bob receives an email from an address she knows to belong to Alice's company. It is formatted similarly to other emails that he has received from Alice's company in the past, but the page linked is not Alice's website. This could be an example of what specific kind of attack? </p>
-            <form id = "q1">
+            <div style="margin: auto;">
+             <p class="quiz">Bob receives an email from an address she knows to belong to Alice's company. It is formatted similarly to other emails that he has received from Alice's company in the past, but the page linked is not Alice's website. This could be an example of what specific kind of attack? </p>
+             <p id = "output1" class="quiz"></p>
+            <form id = "q1" class="quiz">
                 <label for = "cred">Credential Harvesting</label>
                 <input type = "radio" id = "cred" name = "q1" value = "b">
                 <br>
@@ -57,7 +59,7 @@
                 <button type = "button" onClick = "getQ(1, 'clone', 'output1')">Submit</button>
 		    </form>
 
-             <p id = "output1"></p>
+             </div>
 
 		
 	
@@ -79,8 +81,10 @@
                 • Enable multi-factor authentication (MFA) wherever possible, it blocks many account takeovers. <br>
             </p>
 
-             <p>Which of these should you not do when receiving communication in order to prevent fishing?</p>
-            <form id = "q2">
+             <p class="quiz">Which of these should you not do when receiving communication in order to prevent fishing?</p>
+             <p id = "output2" class="quiz"></p>
+            <div style="margin: auto;">
+            <form id = "q2" class="quiz">
                 <label for = "spelling">Carefully check spelling</label>
                 <input type = "radio" id = "spelling" name = "q2" value = "b">
                 <br>
@@ -95,8 +99,8 @@
                 <br>
                 <button type = "button" onClick = "getQ(2, 'links', 'output2')">Submit</button>
 		    </form>
-
-             <p id = "output2"></p>
+            </div>
+             
     </main>
 		
 	

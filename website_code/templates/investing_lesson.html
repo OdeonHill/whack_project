@@ -51,8 +51,10 @@
                 Before making any investment, it’s important to assess your financial goals, risk tolerance, and time frame. You should also consider working with a financial advisor to create a diversified investment strategy that suits your needs.
             </p>
 
-             <p>Which of these is the least risky?</p>
-            <form id = "q1">
+            <div style="margin: auto;">
+             <p class="quiz">Which of these is the least risky?</p>
+             <p id = "output1" class="quiz"></p>
+            <form id = "q1" class="quiz">
                 <label for = "crypto">Cryptocurrency</label>
                 <input type = "radio" id = "crypto" name = "q1" value = "b">
                 <br>
@@ -67,8 +69,8 @@
                 <br>
                 <button type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
 		    </form>
-
-             <p id = "output1"></p>
+            </div>
+             
 
 		
 	

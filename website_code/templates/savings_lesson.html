@@ -45,8 +45,10 @@
             <p class="main-paragraph">
                 Fixed-rate savings accounts lock in your interest rate for a set period, such as 6 months, 1 year, or more. This provides a stable and predictable return on your savings, regardless of changes in market interest rates. However, the downside is that your money is often inaccessible for the duration of the term without incurring a penalty.
             </p>
-            <p>Which of these would usually offer the lowest interest rate? </p>
-            <form id = "q1">
+            <div style="margin: auto;">
+            <p class="quiz">Which of these would usually offer the lowest interest rate? </p>
+            <p id = "output1" class="quiz"></p>
+            <form id = "q1" class="quiz">
                 <label for = "">High Interest</label>
                 <input type = "radio" id = "high" name = "q1" value = "b">
                 <br>
@@ -61,8 +63,9 @@
                 <br>
                 <button type = "button" onClick = "getQ(1, 'instant', 'output1')">Submit</button>
 		    </form>
+            </div>
 
-            <p id = "output1"></p>
+            
 
             <h2 class="sub-header"> 
                 Comparing Savings Accounts
@@ -78,8 +81,10 @@
                 Apart from traditional savings accounts, there are other savings schemes designed for specific goals. For example, ISAs (Individual Savings Accounts) in the UK allow you to save tax-free up to a certain limit each year. Other options include children’s savings accounts, which often come with bonus interest rates or government contributions. Additionally, many banks offer "savings bonds" or "certificate of deposit" (CD) options, which are low-risk investment opportunities that lock in your money for a set term in exchange for a higher interest rate. Be sure to evaluate your savings needs and financial goals before choosing the best scheme.
             </p>
 
-            <p>What is the main, unique benefit of an ISA?</p>
-            <form id = "q2">
+            <div style="margin: auto;">
+            <p class="quiz">What is the main, unique benefit of an ISA?</p>
+            <p id = "output2" class="quiz"></p>
+            <form id = "q2" class="quiz">
                 <label for = "taxfree">They are tax free</label>
                 <input type = "radio" id = "taxfree" name = "q2" value = "b">
                 <br>
@@ -94,8 +99,8 @@
                 <br>
                 <button type = "button" onClick = "getQ(2, 'taxfree', 'output2')">Submit</button>
 		    </form>
-
-             <p id = "output2"></p>
+        </div>
+             
     </main>
 		
 	<script>
