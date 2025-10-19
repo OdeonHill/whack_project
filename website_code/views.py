@@ -101,6 +101,10 @@ def credit_score():
 def phone_demo():
     return render_template("phone.html")
 
+@views.route('/signup')
+def signup():
+    return render_template("signup.html")
+
 @views.route('/submit_lesson', methods=['POST'])
 def submit_lesson():
     # Get the data from the form submission
@@ -121,6 +125,12 @@ def submit_lesson():
 
         # Return a success message as JSON
         return jsonify({"message": "Lesson complete!"}), 200
+
+
+@views.route('/interest_calculator')
+def interest_calculator():
+    return render_template("interest_calculator.html")
+
 
 @views.route('/add_savings', methods=['POST'])
 @login_required

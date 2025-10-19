@@ -15,14 +15,16 @@
 
     <!-- Login Form -->
     <div class="login-container">
-        <form class="login-form" action="{{ url_for('auth.login') }}" method="POST">
-            <h2>Login to Lett-us</h2>
+        <form class="login-form" action="{{ url_for('auth.signup') }}" method="POST">
+            <h2>Register to Lett-us</h2>
             <input type="text" class="login-input" name="username" required>
             <input type="password" class="login-input" name="password" required>
-            <button type="submit" class="login-btn" >Lett-us in</button>
-            <div class="forgot-password">
-                <p><a href="{{ url_for('views.signup') }}">Register here</a></p>
+            <button type="submit" class="login-btn" >Sign-up</button>
+            {% if error_message %}
+            <div class="error-message" style="color: red; font-size: 12px; margin-top: 5px;">
+                {{ error_message }}
             </div>
+        {% endif %}
         </form>
     </div>
 </body>
