@@ -70,7 +70,7 @@
                 <label class="main-paragraph" for = "stocks">Stocks</label>
                 <input type = "radio" id = "stocks" name = "q1" value = "c">
                 <br>
-                <button class="login-btn" type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
+                <button id = "btn" class="login-btn" type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
 		    </form>
             </div>
             </div>
@@ -92,7 +92,36 @@
                 document.getElementById(out).innerHTML="Incorrect";
                 console.log("Incorrect");
             }
+        } </script>
+        <script>
+        document.getElementById("btn").addEventListener("click", function() {
+        // Get the content of the two <p> elements
+        const output1 = document.getElementById("output1").textContent;
+        const output2 = "Correct!";
+
+        // Check if both elements contain "Correct!"
+        if (output1 === "Correct!" && output2 === "Correct!") {
+            // Create the form data to send to the Flask server
+            const formData = new FormData();
+            formData.append('element1', output1);
+            formData.append('element2', output2);
+            formData.append('element3', 2);
+
+            // Make the AJAX request to the backend
+            fetch("{{ url_for('views.submit_lesson') }}", {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert(result.message);  // Show the success or failure message
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred.');
+            });
         }
+    });
     </script>
 		
 	</body>

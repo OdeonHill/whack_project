@@ -99,3 +99,25 @@ def credit_score():
 @views.route('/phone_demo')
 def phone_demo():
     return render_template("phone.html")
+
+@views.route('/submit_lesson', methods=['POST'])
+def submit_lesson():
+    # Get the data from the form submission
+    element1 = request.form.get('element1')
+    element2 = request.form.get('element2')
+    element3 = request.form.get('element3')
+
+    # Check if both elements contain the word "Correct!"
+    if element1 == "Correct!" and element2 == "Correct!":
+        # Example: You could check if the user is logged in or fetch user from session
+        user_id = current_user.id  # Assuming the user_id is available (e.g., from session)
+        lesson_id = element3  # Assuming the lesson ID is available (e.g., from the form or context)
+
+        # Add a record to LessonsCompleted
+        lesson_completed = LessonsCompleted(user_id=user_id, lesson_id=lesson_id)
+        db.session.add(lesson_completed)
+        db.session.commit()
+
+        # Return a success message as JSON
+        return jsonify({"message": "Lesson complete!"}), 200
+
