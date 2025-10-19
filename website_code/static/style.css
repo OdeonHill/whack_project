@@ -582,3 +582,59 @@ main {
   color: #2e8b57;
   font-weight: bold;
 }
+
+.flashcard {
+    background-color: #c3e7b7;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 700px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2em;
+    color: #333;
+    text-align: justify;
+}
+
+.red-flags-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.red_flags {
+  background-color: #ff6565;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  min-width: 350px;
+  text-align: center;
+  font-size: large;
+}
+
+.main-paragraph {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 600;
+}
+
+.next-btn {
+  font-size: 1.5em;
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.next-btn:hover {
+  background-color: #246d46;
+  transform: scale(1.1);
+}
+.next-btn:active {
+  background-color: #1c5f3d;
+}

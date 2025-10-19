@@ -40,8 +40,8 @@ def seed_savings():
     savings1 = Savings(
         user_id = 1,
         goal="Phone",
-        total_amount=5000.0,
-        current_amount=1500.0,
+        total_amount=1300.0,
+        current_amount=25.0,
         after_interest=2000.0,
         interest_rate=0.03,  # 3% interest rate
         start_date=date(2023, 1, 1),

@@ -19,20 +19,24 @@
 		    <h1 class="main-header"> 
                 Phishing 101: Stay Safe Online
             </h1>
-            <p class="main-paragraph"> 
-                Phishing is a type of online scam where attackers impersonate trusted people or organizations to trick you into revealing sensitive information (passwords, credit card numbers, personal data) or into taking an action (clicking a malicious link, opening an attachment). This lesson introduces common phishing tactics, how to spot them, and practical steps to prevent and respond to attacks.
+            <div class="flashcard" >
+                <p class="main-paragraph">Phishing is a type of online scam where attackers impersonate trusted people or organizations to trick you into revealing sensitive information (passwords, credit card numbers, personal data) or into taking an action (clicking a malicious link, opening an attachment). This lesson introduces common phishing tactics, how to spot them, and practical steps to prevent and respond to attacks.
             </p>
+            </div>
 
             <h3 class="sub-header"> 
                 What Is Phishing?
             </h3>
+            <div class ="flashcard" >
             <p class="main-paragraph"> 
                 At its core, phishing relies on social engineering, manipulating trust and emotions (urgency, fear, curiosity) to get you to act without thinking. Phishing can arrive via email, SMS (smishing), voice calls (vishing), social media messages, or fake websites. Attackers may pretend to be your bank, a colleague, a delivery service, or a tech support agent.
             </p>
+            </div>
 
             <h3 class="sub-header"> 
                 Common Types of Phishing
             </h3>
+            <div class ="flashcard" >
             <p class="main-paragraph">
                 • Email Phishing: Fraudulent emails that mimic real organizations asking you to click a link or enter credentials. <br>
                 • Spear Phishing: Targeted attacks aimed at a specific individual or company, often using personal details to appear legitimate. <br>
@@ -41,6 +45,7 @@
                 • Clone Phishing: A legitimate email is copied and re-sent with a malicious attachment or link swapped in. <br>
                 • Credential Harvesting Websites: Fake login pages designed to steal usernames and passwords.
             </p>
+            </div>
 
             <div class="login-container" >
                 <div class="login-form">
@@ -69,21 +74,27 @@
 	
 
             <h3 class="sub-header">
-                How to Spot a Phish
+                How to Spot a Phish (Red Flags)
             </h3>
-            <p class="main-paragraph">
-                Look for red flags: unexpected messages, urgent language (“act now”), generic greetings (“Dear customer”), spelling or grammar mistakes, suspicious sender addresses (slightly misspelled domains), links that don’t match the displayed text, unexpected attachments, or requests for sensitive information. If something feels off, verify through a different channel (call the company using a known number).
-            </p>
+
+            <div class="red-flags-container">
+              <div class="red_flags">
+                <p class="main-paragraph" id="red-flag-text">Unexpected Messages</p>
+              </div>
+                <button id="next-flag" class="next-btn">→</button>
+              </div>
 
             <h2 class="sub-header"> 
                 Preventing Phishing: Best Practices
             </h2>
+            <div class ="flashcard" >
             <p class="main-paragraph">
                 • Think before you click: hover over links (on desktop) to see the real URL. <br>
                 • Verify sender identity: independently look up the company’s contact info before responding. <br>
                 • Use strong, unique passwords and a password manager to avoid reusing credentials. <br>
                 • Enable multi-factor authentication (MFA) wherever possible, it blocks many account takeovers. <br>
             </p>
+            </div>
 
             <div class="login-container" >
             <div class="login-form">
@@ -113,48 +124,71 @@
 
 
     <script>
-        
-        function getQ(q_num, correct, out){
-            console.log("Enter function");
-            if(document.getElementById(correct).checked == true){
-                console.log("Correct");
-                document.getElementById(out).innerHTML="Correct!";
-                //may need db call to update user progress - using q_num param
-            }else{
-                document.getElementById(out).innerHTML="Incorrect";
-                console.log("Incorrect");
-            }
-        }
-    </script>
-    <script>
-        document.getElementById("btn").addEventListener("click", function() {
-        // Get the content of the two <p> elements
-        const output1 = document.getElementById("output1").textContent;
-        const output2 = document.getElementById("output2").textContent;
+  // ===============================
+  // Red Flag Carousel Functionality
+  // ===============================
+  const redFlags = [
+    "Unexpected Messages",
+    "Urgent or Threatening Language",
+    "Requests for Personal Information",
+    "Suspicious Links or Attachments",
+    "Poor Grammar or Misspellings",
+    "Too-Good-to-Be-True Offers",
+    "Email Address Doesn’t Match the Sender"
+  ];
 
-        // Check if both elements contain "Correct!"
-        if (output1 === "Correct!" && output2 === "Correct!") {
-            // Create the form data to send to the Flask server
-            const formData = new FormData();
-            formData.append('element1', output1);
-            formData.append('element2', output2);
-            formData.append('element3', 3);
+  let index = 0;
+  const redFlagText = document.getElementById("red-flag-text");
+  const nextBtn = document.getElementById("next-flag");
 
-            // Make the AJAX request to the backend
-            fetch("{{ url_for('views.submit_lesson') }}", {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(result => {
-                alert(result.message);  // Show the success or failure message
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred.');
-            });
-        }
-    });
-    </script>
-    
-</body>
+  // Cycle through red flags when clicking the arrow
+  nextBtn.addEventListener("click", () => {
+    index = (index + 1) % redFlags.length; // loop back to start
+    redFlagText.textContent = redFlags[index];
+  });
+
+
+  // ===============================
+  // Quiz Answer Checking
+  // ===============================
+  function getQ(q_num, correct, out) {
+    console.log("Enter function");
+    if (document.getElementById(correct).checked === true) {
+      console.log("Correct");
+      document.getElementById(out).innerHTML = "Correct!";
+    } else {
+      document.getElementById(out).innerHTML = "Incorrect";
+      console.log("Incorrect");
+    }
+  }
+
+  // ===============================
+  // Lesson Completion Submission
+  // ===============================
+  document.getElementById("btn").addEventListener("click", function() {
+    const output1 = document.getElementById("output1").textContent;
+    const output2 = document.getElementById("output2").textContent;
+
+    if (output1 === "Correct!" && output2 === "Correct!") {
+      const formData = new FormData();
+      formData.append('element1', output1);
+      formData.append('element2', output2);
+      formData.append('element3', 3);
+
+      fetch("{{ url_for('views.submit_lesson') }}", {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(result => {
+        alert(result.message);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred.');
+      });
+    }
+  });
+</script>
+    </body><!--end of body-->
+</html>
