@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+
+</head>
+<body>
+<header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
+    </header>
+<div class="login-container">
+    <div class ="login-form">
+    <h1 class="main-header">Budget Calculator</h1>
+    <form id="budgetForm">
+        <label class="main-paragraph" for="salary">Weekly Salary:</label>
+        <input type="number" id="salary" name="salary" required>
+
+        <label class="main-paragraph" for="spending">Weekly Spending:</label>
+        <input type="number" id="spending" name="spending" required>
+
+        <button class="login-btn"type="button" onclick="calculateBudget()">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+</div>
+</div>
+
+<script>
+function calculateBudget() {
+    const salary = parseFloat(document.getElementById('salary').value);
+    const spending = parseFloat(document.getElementById('spending').value);
+    const resultDiv = document.getElementById('result');
+
+    if (isNaN(salary) || isNaN(spending)) {
+        resultDiv.innerHTML = '<p>Please enter valid numbers for salary and spending.</p>';
+        return;
+    }
+
+    const underbudget = salary - spending;
+
+    if (underbudget >= 0) {
+        const newSpending = salary * 0.8; // suggest spending 80% of salary
+        resultDiv.innerHTML = `
+            <p class="under-budget">You're under budget! You can spend up to $${newSpending.toFixed(2)} weekly.</p>
+        `;
+    } else {
+        const overbudget = Math.abs(underbudget);
+        const savingsSuggestion = overbudget * 0.3;
+
+        const months = [3, 6, 12];
+        let savingsProjection = '';
+        months.forEach(month => {
+            let projectedSavings = savingsSuggestion * month;
+            savingsProjection += `
+                <p>In ${month} months, your savings could grow to $${projectedSavings.toFixed(2)} if you save ${savingsSuggestion.toFixed(2)} per week.</p>
+            `;
+        });
+
+        resultDiv.innerHTML = `
+            <p class="over-budget">You're over budget by $${overbudget.toFixed(2)}!</p>
+            <p>Consider saving 30% of that overbudget ($${savingsSuggestion.toFixed(2)} per week).</p>
+            ${savingsProjection}
+        `;
+    }
+}
+</script>
+
+</body>
+</html>
