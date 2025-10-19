@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Plan Finder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
+    </header>
+
+<main>
+    <div class="login-container">
+    <div class="login-form">
+    <h1 class="main-header">Find the Best Credit Card for You</h1>
+    <p class ="main-paragraph">Enter your credit score, preferred rewards, and spending habits to find the best Capital One credit card offers.</p>
+
+
+    <form id="card-form">
+        <label class="main-paragraph" for="credit-score">Credit Score Range:</label>
+        <select id="credit-score" required>
+            <option value="579">300 - 579 (Poor)</option>
+            <option value="669">580 - 669 (Fair)</option>
+            <option value="739">670 - 739 (Good)</option>
+            <option value="850">740 - 850 (Excellent)</option>
+        </select>
+
+        <label class="main-paragraph" for="spending">Monthly Spending:</label>
+        <input type="number" id="spending" placeholder="Enter your average monthly spending" required>
+
+        <button class="login-btn" type="submit">Find Credit Cards</button>
+    </form>
+
+    <div id="card-list" class="card-list"></div>
+</div>
+</div>
+</main>
+<script>
+    const cards = [
+        {
+            name: "Capital One QuicksilverOne Cash Rewards Credit Card",
+            creditScore: "580",
+            rewards: "cashback",
+            apr: "26.99%",
+            spendingLimit: "None",
+            description: "Earn unlimited 1.5% cash back on every purchase, every day."
+        },
+        {
+            name: "Capital One Venture Rewards Credit Card",
+            creditScore: "670",
+            rewards: "travel",
+            apr: "20.99%",
+            spendingLimit: "$5,000+",
+            description: "Earn 2x miles on every purchase. No blackout dates on travel bookings."
+        },
+        {
+            name: "Capital One Platinum Credit Card",
+            creditScore: "300",
+            rewards: "low-APR",
+            apr: "26.99%",
+            spendingLimit: "None",
+            description: "A great choice for building or rebuilding credit with a low starting APR."
+        },
+        {
+            name: "Capital One SavorOne Cash Rewards Credit Card",
+            creditScore: "670",
+            rewards: "cashback",
+            apr: "19.99%",
+            spendingLimit: "$3,000+",
+            description: "Earn unlimited 3% cash back on dining, entertainment, and grocery stores."
+        }
+    ];
+
+    // Function to filter and display credit cards
+    function findCards(event) {
+        event.preventDefault();
+
+        const scoreRange = document.getElementById('credit-score').value;
+        const spending = parseInt(document.getElementById('spending').value);
+
+        const filteredCards = cards.filter(card => {
+            const scoreMatch = card.creditScore <= scoreRange;
+            const spendingMatch = card.spendingLimit === "None" || spending >= 3000;  // Example threshold logic
+
+            return scoreMatch && spendingMatch;
+        });
+
+        displayCards(filteredCards);
+    }
+
+    // Function to display filtered cards
+    function displayCards(cards) {
+        const cardListDiv = document.getElementById('card-list');
+        cardListDiv.innerHTML = ''; // Clear previous results
+
+        if (cards.length === 0) {
+            cardListDiv.innerHTML = '<p class="main-paragraph">No matching cards found. Try adjusting your preferences.</p>';
+            return;
+        }
+
+        cards.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.classList.add('card');
+            cardDiv.innerHTML = `
+                <h3>${card.name}</h3>
+                <p><strong>APR:</strong> ${card.apr}</p>
+                <p><strong>Spending Limit:</strong> ${card.spendingLimit}</p>
+                <p>${card.description}</p>
+            `;
+            cardListDiv.appendChild(cardDiv);
+        });
+    }
+
+    // Event listener for form submission
+    document.getElementById('card-form').addEventListener('submit', findCards);
+</script>
+
+</body>
+</html>
