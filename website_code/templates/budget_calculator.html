@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Budget Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+ 
 
 </head>
 <body>
@@ -34,34 +36,35 @@ function calculateBudget() {
     const spending = parseFloat(document.getElementById('spending').value);
     const resultDiv = document.getElementById('result');
 
-    if (isNaN(salary) || isNaN(spending)) {
+    if (isNaN(salary) || isNaN(spending) || salary < 0 || spending <0) {
         resultDiv.innerHTML = '<p>Please enter valid numbers for salary and spending.</p>';
         return;
     }
 
-    const underbudget = salary - spending;
+    const budget = salary - spending;
 
-    if (underbudget >= 0) {
-        const newSpending = salary * 0.8; // suggest spending 80% of salary
+    if (budget <= 0) {
+        const newSpending = salary * 0.9; // suggest spending 80% of salary
         resultDiv.innerHTML = `
-            <p class="under-budget">You're under budget! You can spend up to $${newSpending.toFixed(2)} weekly.</p>
-        `;
+            <p class="main-paragraph">You're over budget! Consider lowering your budget to £${newSpending.toFixed(2)} weekly.</p>
+            <div class="intro"><img src="{{ url_for('static', filename='images/veryangy.gif') }}"  alt="Lett-us Logo"></div>
+        
+            `;
     } else {
-        const overbudget = Math.abs(underbudget);
-        const savingsSuggestion = overbudget * 0.3;
+        const savingsSuggestion = budget * 0.3;
 
         const months = [3, 6, 12];
         let savingsProjection = '';
         months.forEach(month => {
             let projectedSavings = savingsSuggestion * month;
             savingsProjection += `
-                <p>In ${month} months, your savings could grow to $${projectedSavings.toFixed(2)} if you save ${savingsSuggestion.toFixed(2)} per week.</p>
+                <p>In ${month} months, your savings could grow to £${projectedSavings.toFixed(2)}!</p>
             `;
         });
 
         resultDiv.innerHTML = `
-            <p class="over-budget">You're over budget by $${overbudget.toFixed(2)}!</p>
-            <p>Consider saving 30% of that overbudget ($${savingsSuggestion.toFixed(2)} per week).</p>
+            <p class="main-paragraph">You're under budget by £${budget.toFixed(2)}!</p>
+            <p class="main-paragraph">Consider saving 30% of that extra budget (£${savingsSuggestion.toFixed(2)} per week).</p>
             ${savingsProjection}
         `;
     }

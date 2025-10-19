@@ -66,3 +66,7 @@ def credit_lesson():
 @views.route('/login')
 def login():
     return render_template("login.html")
+
+@views.route('/budget_calculator')
+def budget_calculator():
+    return render_template("budget_calculator.html")
