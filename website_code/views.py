@@ -1,8 +1,9 @@
 from functools import wraps  # <-- Add this import
 from flask import request, Response
 from flask import Blueprint, render_template, make_response, jsonify
-from flask_login import current_user
+from flask_login import current_user, login_required
 from .models import *
+
 
 views = Blueprint('views', __name__)
 
@@ -121,3 +122,17 @@ def submit_lesson():
         # Return a success message as JSON
         return jsonify({"message": "Lesson complete!"}), 200
 
+@views.route('/add_savings', methods=['POST'])
+@login_required
+def add_savings():
+    data = request.get_json()
+    amount = data.get('amount', 0)
+
+    saving = Savings.query.filter_by(user_id=current_user.id).first()
+    if not saving:
+        return jsonify({'success': False, 'error': 'No savings goal found.'}), 400
+
+    saving.current_amount += float(amount)
+    db.session.commit()
+
+    return jsonify({'success': True, 'new_amount': saving.current_amount})

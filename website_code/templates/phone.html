@@ -42,7 +42,19 @@
        id="veryAngyGif"
        class="mood-img"
        alt="Very Angry">
+
+  <!-- 💰 Input area for adding savings -->
+  <div class="savings-input">
+    <h3>Add to your savings</h3>
+    <form id="savings-form">
+      <input type="number" id="amount" name="amount" placeholder="Enter amount (£)" min="1" required>
+      <button type="submit">Add</button>
+    </form>
+    <p id="update-message" class="update-message"></p>
+  </div>
 </div>
+
+<!-- JS -->
 <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

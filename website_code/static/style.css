@@ -537,3 +537,48 @@ main {
     color: #1c5f3d;
     text-decoration: underline;
 }
+
+.savings-input {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.savings-input h3 {
+  color: #2e8b57;
+  margin-bottom: 10px;
+}
+
+.savings-input form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.savings-input input {
+  padding: 8px 10px;
+  border: 2px solid #2e8b57;
+  border-radius: 8px;
+  font-size: 1em;
+  width: 140px;
+  text-align: center;
+}
+
+.savings-input button {
+  padding: 8px 15px;
+  background-color: #2e8b57;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.savings-input button:hover {
+  background-color: #246d46;
+}
+
+.update-message {
+  margin-top: 10px;
+  color: #2e8b57;
+  font-weight: bold;
+}
