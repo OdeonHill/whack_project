@@ -6,55 +6,103 @@
     <title>Interest Calculator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
  
+    <style>
+        .forms-layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3rem;              /* space between the three sections */
+  margin-top: 2rem;
+}
 
+.output-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #2a2a2a;
+}
+
+.login-container {
+  flex: 1;
+  max-width: 350px;
+}
+
+.result {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+    </style>
 </head>
 <body>
 <header class="top-bar">
-        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
-        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
-    </header>
-<div class="login-container">
-    <div class ="login-form">
-    <h1 class="main-header">Interest Calculator</h1>
-    <form id="interestForm" onsubmit="setUpAccount(event)">
+  <div class="logo">
+    <img src="{{ url_for('static', filename='images/happy.gif') }}"
+         onclick="window.location.href='{{ url_for('views.dashboard') }}'"
+         alt="Lett-us Logo">
+    <p class="logo-txt">Lett-us Save!</p>
+  </div>
+  <button class="logout-btn"
+          onclick="window.location.href='{{ url_for('auth.logout') }}'">
+          Logout
+  </button>
+</header>
+
+<!-- 👇 New flex container -->
+<div class="forms-layout">
+  
+  <!-- Left form -->
+  <div class="login-container">
+    <div class="login-form">
+      <h1 class="main-header">Set Up Account</h1>
+      <form id="interestForm" onsubmit="setUpAccount(event)">
         <label class="main-paragraph" for="aer">AER:</label>
-        <input type="number" id="aer" name="interestForm" required>
-
+        <input type="number" id="aer" required step="any">
+        <br>
         <label class="main-paragraph" for="balance">Starting Balance:</label>
-        <input type="number" id="balance" name="interestForm" required>
-
+        <input type="number" id="balance" required step="0.01">
+        <br>
         <label class="main-paragraph" for="opened">Date opened:</label>
-        <input type="date" id="opened" name="interestForm" required>
-
+        <input type="date" id="opened" required>
+        <br>
         <label class="main-paragraph" for="closed">Date of maturity:</label>
-        <input type="date" id="closed" name="interestForm" required>
+        <input type="date" id="closed" required>
+        <br>
+        <button class="login-btn" type="submit">Submit</button>
+      </form>
+      <div id="result" class="result"></div>
+    </div>
+  </div>
 
+  <!-- Middle column for output -->
+  <div class="output-column">
+    <div id="balanceout" class="result"><p>Balance: £0</p></div>
+    <div id="returnout" class="result"><p>Expected return: £0</p></div>
+  </div>
 
-        <button class="login-btn"type="submit">Submit</button>
-    </form>
-
-    <div id="result" class="result"></div>
-</div>
-</div>
-<div id="balanceout" class="result"></div>
-<div id="returnout" class="result"></div>
-<div class="login-container">
-    <div class ="login-form">
-    <h1 class="main-header">Interest Calculator</h1>
-    <form id="addForm" onsubmit="addMoneyForm(event)">
-        
+  <!-- Right form -->
+  <div class="login-container">
+    <div class="login-form">
+      <h1 class="main-header">Add Money</h1>
+      <form id="addForm" onsubmit="addMoneyForm(event)">
         <label class="main-paragraph" for="amount">Payment Amount:</label>
-        <input type="number" id="amount" name="addForm" required>
+        <input type="number" id="amount" required step="0.01">
+        <br>
+        <label class="main-paragraph" for="pay_date">Date of payment:</label>
+        <input type="date" id="pay_date" required>
+        <br>
+        <button class="login-btn" type="submit">Submit</button>
+      </form>
+      <div id="result2" class="result"></div>
+    </div>
+  </div>
 
-        <label class="main-paragraph" for="opened">Date of payment:</label>
-        <input type="date" id="pay_date" name="addForm" required>
-
-        <button class="login-btn"type="submit">Submit</button>
-    </form>
-
-    <div id="result" class="result"></div>
 </div>
-</div>
+
 
 <script>
 let aer = 0;
@@ -119,8 +167,8 @@ function addMoneyForm(event){
 }
 
 function output(){
-    document.getElementById("balanceout").innerHTML = `<p>£ ${balance.toFixed(2)}</p>`;
-    document.getElementById("returnout").innerHTML = `<p>£ ${exp_return.toFixed(2)}</p>`;
+    document.getElementById("balanceout").innerHTML = `Balance: <p>£ ${balance.toFixed(2)}</p>`;
+    document.getElementById("returnout").innerHTML = `Expected Return: <p>£ ${exp_return.toFixed(2)}</p>`;
 
 }
 
