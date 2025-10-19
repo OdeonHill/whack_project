@@ -49,8 +49,9 @@
             </p>
             <div class="login-container">
             <div class="login-form">
-            <p class="main-paragraph">Which of these would usually offer the lowest interest rate? </p>
-            <form id = "q1">
+                <p class="main-paragraph">Which of these would usually offer the lowest interest rate? </p>
+                <p id="output1" class="answer"></p>
+                <form id = "q1">
                 <label for = "">High Interest</label>
                 <input class="main-paragraph"type = "radio" id = "high" name = "q1" value = "b">
                 <br>
@@ -62,8 +63,8 @@
                 <br>
                 <label for = "isa">ISA</label>
                 <input class="main-paragraph"type = "radio" id = "isa" name = "q1" value = "c">
-                <br>
-                <button class="login-btn" type = "button" onClick = "getQ(1, 'instant', 'output1')">Submit</button>
+                <br> 
+                <button class="login-btn" type = "button" onclick = "getQ(1, 'instant', 'output1')">Submit</button>
 		    </form>
             </div>
             </div>
@@ -101,7 +102,7 @@
                 <label for = "credit">They increase your credit score</label>
                 <input class="main-paragraph"type = "radio" id = "credit" name = "q2" value = "c">
                 <br>
-                <button id = "btn" class="login-btn" type = "button" onClick = "getQ(2, 'taxfree', 'output2')">Submit</button>
+                <button id = "btn" class="login-btn" type = "button" onclick = "getQ(2, 'taxfree', 'output2')">Submit</button>
 		    </form>
         </div>
         </div>
