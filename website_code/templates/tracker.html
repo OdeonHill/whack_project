@@ -42,8 +42,6 @@
                 addGoalToList(selectedGoal);
                 // Clear the select field after adding the goal
                 select.value = "";
-            } else {
-                alert("Please select a savings goal to add!");
             }
         });
 
@@ -149,9 +147,7 @@
         if (selectedGoal !== "") {
             addGoalToList(selectedGoal);
             select.value = "";
-        } else {
-            alert("Please select a savings goal to add!");
-        }
+        } 
     });
 
     // Dynamically adds the goal with a link + remove button

@@ -1,5 +1,6 @@
 from website_code import create_app, db
 from datetime import date
+from werkzeug.security import generate_password_hash, check_password_hash
 from website_code.models import User, Savings, Lessons, LessonsCompleted
 
 # Create the Flask app instance
@@ -7,8 +8,8 @@ app = create_app()
 
 # Seed the User table
 def seed_users():
-    user1 = User(id=1,email="rene@gmail.com", password="TH1NK")
-    user2 = User(id=2,email="plato@hotmail.com", password="greek!")
+    user1 = User(id=1,email="rene@gmail.com", password=generate_password_hash("TH1NK"))
+    user2 = User(id=2,email="plato@hotmail.com", password=generate_password_hash("greek!"))
 
     db.session.add(user1)
     db.session.add(user2)
