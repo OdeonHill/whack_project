@@ -129,10 +129,18 @@ def submit_lesson():
         # Return a success message as JSON
         return jsonify({"message": "Lesson complete!"}), 200
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56ab771aee24627be764257386afcf9fac5faf99
 @views.route('/interest_calculator')
 def interest_calculator():
     return render_template("interest_calculator.html")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56ab771aee24627be764257386afcf9fac5faf99
 @views.route('/add_savings', methods=['POST'])
 @login_required
 def add_savings():
