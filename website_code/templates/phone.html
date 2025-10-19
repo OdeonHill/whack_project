@@ -4,16 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Savings Progress Phone</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: #fff;
-    font-family: Arial, sans-serif;
-  }
 
   .phone-container {
     position: relative;
@@ -85,6 +78,11 @@
 </head>
 <body>
 
+  <header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
+    </header>
+
   <div class="phone-container" id="phone">
     <div class="fill" id="fill"></div>
     <div class="speaker"></div>
@@ -94,7 +92,7 @@
 
   <div class="percentage" id="percentage">Loading...</div>
 
-  <img src="{{ url_for('static', filename='images/veryangy.png') }}" 
+  <img src="{{ url_for('static', filename='images/veryangy.gif') }}" 
        id="angyImg" 
        class="angy-img" 
        alt="Very Angy Face">

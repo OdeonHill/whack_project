@@ -27,7 +27,7 @@ def no_cache(f):
 
 @views.route('/')
 def home():
-    return render_template("phone.html")
+    return render_template("home.html")
 
 @views.route('/dashboard')
 def dashboard():
@@ -92,3 +92,7 @@ def budget_calculator():
 @views.route('/credit_score')
 def credit_score():
     return render_template("credit_score.html")
+
+@views.route('/phone_demo')
+def phone_demo():
+    return render_template("phone.html")
