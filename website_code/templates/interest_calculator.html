@@ -52,7 +52,7 @@
   </button>
 </header>
 
-<!-- 👇 New flex container -->
+<!-- New flex container -->
 <div class="forms-layout">
   
   <!-- Left form -->
@@ -138,9 +138,13 @@ function setUpAccount(event) {
         document.getElementById("result").innerHTML = '<p>Please enter valid numbers for salary and spending.</p>';
         return;
     }
-
-    exp_return = addMoney(0,aer, mature_date - open_date, balance,mature_date - open_date);
+    
+    exp_return = addMoney(0,aer, diffDays(open_date, mature_date), balance);
     output();
+}
+
+function diffDays(startDate, endDate){
+    return (endDate-startDate) / (1000 * 60 * 60 * 24);
 }
 
 function addMoneyForm(event){
@@ -162,7 +166,7 @@ function addMoneyForm(event){
     }
 
     balance += amountToAdd;
-    exp_return = addMoney(exp_return, aer, mature_date - paymentDate, amountToAdd, mature_date - open_date);
+    exp_return = addMoney(exp_return, aer, diffDays(paymentDate, mature_date), amountToAdd);
     output();
 }
 
@@ -180,7 +184,8 @@ function output(){
  * @returns 
  */
 function interest(aer, payments, yearlyPayments){
-  return (aer/100 + 1)**(payments/yearlyPayments);
+    
+    return (aer/100 + 1)**(payments/yearlyPayments);
 }
 
 /**
@@ -191,8 +196,8 @@ function interest(aer, payments, yearlyPayments){
  * @param {*} amountAdded Amount of money added in this payment
  * @returns 
  */
-function addMoney(currentReturn, AER, daysleftinyear, amountAdded, paymentsInYear){
-  return currentReturn + amountAdded * interest(AER, daysleftinyear, paymentsInYear);
+function addMoney(currentReturn, AER, daysleftinyear, amountAdded){
+    return currentReturn + amountAdded * interest(AER, daysleftinyear, 365);
 }
 
 /**
