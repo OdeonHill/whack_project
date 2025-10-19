@@ -14,7 +14,7 @@ def login():
         password = request.form.get('password')  # Get the password from the form
         print(email2)
         user = User.query.filter_by(email=email2).first()  # Query the database for the user with the given email
-        if user and user.password == password:  # Check if user exists and password matches
+        if user and check_password_hash(user.password,password):  # Check if user exists and password matches
             login_user(user)  # Log the user in using Flask-Login
             return redirect(url_for('views.dashboard'))  # Redirect to the dashboard page
     return render_template('login.html')  # Render the login template when the method is GET
