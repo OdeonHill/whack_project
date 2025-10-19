@@ -41,30 +41,13 @@
             var cost = document.getElementById('cost').value;
             var saved = document.getElementById('saved').value;
             if (name !== "" && cost >= 0 && saved >=0) {
-                addGoalToList(name, cost, saved);
+                addGoalToList(name);
                 // Clear the select field after adding the goal
             } else {
                 alert("Please select a savings goal to add!");
             }
         });
 
-        // Function to add a goal to the list dynamically
-        function addGoalToList(name, cost, saved) {
-            var list = document.getElementById('goal-list');
-            var listItem = document.createElement('li');
-            listItem.textContent = name;
-
-            // Create a remove button for each goal
-            var removeButton = document.createElement('button');
-            removeButton.textContent = "Remove";
-            removeButton.className = 'remove-btn';
-            removeButton.onclick = function() {
-                list.removeChild(listItem);
-            };
-
-            listItem.appendChild(removeButton);
-            list.appendChild(listItem);
-        }
     </script>
 
     <style>
@@ -157,14 +140,11 @@
     });
 
     // Dynamically adds the goal with a link + remove button
-    function addGoalToList(goal) {
-        const list = document.getElementById('goal-list');
-        const listItem = document.createElement('li');
-
-        // goal title
-        const goalText = document.createElement('span');
-        goalText.textContent = goal;
-        listItem.appendChild(goalText);
+    function addGoalToList(name) {
+        var list = document.getElementById('goal-list');
+        var listItem = document.createElement('span');
+        
+        listItem.appendChild(name);
 
         // link to page
         if (goalLinks[goal]) {
