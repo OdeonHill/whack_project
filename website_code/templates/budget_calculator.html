@@ -17,7 +17,7 @@
     <div class ="login-form">
     <h1 class="main-header">Budget Calculator</h1>
     <form id="budgetForm">
-        <label class="main-paragraph" for="salary">Weekly Salary:</label>
+        <label class="main-paragraph" for="salary">Monthly Salary:</label>
         <input type="number" id="salary" name="salary" required>
 
         <label class="main-paragraph" for="spending">Weekly Spending:</label>
@@ -32,7 +32,7 @@
 
 <script>
 function calculateBudget() {
-    const salary = parseFloat(document.getElementById('salary').value);
+    const salary = parseFloat(document.getElementById('salary').value) /4;
     const spending = parseFloat(document.getElementById('spending').value);
     const resultDiv = document.getElementById('result');
 
@@ -40,6 +40,7 @@ function calculateBudget() {
         resultDiv.innerHTML = '<p>Please enter valid numbers for salary and spending.</p>';
         return;
     }
+
 
     const budget = salary - spending;
 
