@@ -16,16 +16,15 @@
         <h1 class="main-header">Savings Tracker</h1>
         <p class="main-paragraph">Choose a savings goal to add to your tracker!</p>
         <!-- Savings Goal Selector -->
-        <form id="goal-select">
-        <label class="main-paragraph" for="name">Saving Pot Name: </label>
-        <input type="text" id="name" name="name" required>
-        <label class="main-paragraph" for="cost">Total Cost:</label>
-        <input type="number" id="cost" name="cost" required>
-        <label class="main-paragraph" for="saved">Money Saved So Far:</label>
-        <input type="number" id="saved" name="saved" required>
-
-        <button id="add-btn" class="login-btn"type="button">Submit</button>
-    </form>
+        <div class="goal-selector">
+            <select id="goal-select">
+                <option value="">--Select Savings Goal--</option>
+                <option value="Save for a Phone">Save for a Phone</option>
+                <option value="Save for a Laptop">Save for a Laptop</option>
+                <option value="Save for a Car">Save for a Car</option>
+            </select>
+            <button id="add-btn" class="login-btn">Add Goal</button>
+        </div>
         <!-- List of Added Goals -->
         <h2>Your Savings Goals:</h2>
         <ul id="goal-list">
@@ -37,17 +36,34 @@
     <script>
         // Function to add a selected goal to the list
         document.getElementById('add-btn').addEventListener('click', function() {
-            var name = document.getElementById('name').value;
-            var cost = document.getElementById('cost').value;
-            var saved = document.getElementById('saved').value;
-            if (name !== "" && cost >= 0 && saved >=0) {
-                addGoalToList(name);
+            var select = document.getElementById('goal-select');
+            var selectedGoal = select.value;
+            if (selectedGoal !== "") {
+                addGoalToList(selectedGoal);
                 // Clear the select field after adding the goal
+                select.value = "";
             } else {
                 alert("Please select a savings goal to add!");
             }
         });
 
+        // Function to add a goal to the list dynamically
+        function addGoalToList(goal) {
+            var list = document.getElementById('goal-list');
+            var listItem = document.createElement('li');
+            listItem.textContent = goal;
+
+            // Create a remove button for each goal
+            var removeButton = document.createElement('button');
+            removeButton.textContent = "Remove";
+            removeButton.className = 'remove-btn';
+            removeButton.onclick = function() {
+                list.removeChild(listItem);
+            };
+
+            listItem.appendChild(removeButton);
+            list.appendChild(listItem);
+        }
     </script>
 
     <style>
@@ -74,7 +90,6 @@
 
         #goal-select {
             padding: 10px;
-            margin-left:75px;
             width: 200px;
         }
 
@@ -140,11 +155,14 @@
     });
 
     // Dynamically adds the goal with a link + remove button
-    function addGoalToList(name) {
-        var list = document.getElementById('goal-list');
-        var listItem = document.createElement('span');
-        
-        listItem.appendChild(name);
+    function addGoalToList(goal) {
+        const list = document.getElementById('goal-list');
+        const listItem = document.createElement('li');
+
+        // goal title
+        const goalText = document.createElement('span');
+        goalText.textContent = goal;
+        listItem.appendChild(goalText);
 
         // link to page
         if (goalLinks[goal]) {
