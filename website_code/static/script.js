@@ -1,15 +1,13 @@
-// ============================
-// Phone Savings Progress Logic
-// ============================
-
 document.addEventListener("DOMContentLoaded", () => {
   const fill = document.getElementById("fill");
   const percentage = document.getElementById("percentage");
   const motivation = document.getElementById("motivation");
   const happyGif = document.getElementById("happyGif");
   const veryAngyGif = document.getElementById("veryAngyGif");
+  const savingsForm = document.getElementById("savings-form");
+  const amountInput = document.getElementById("amount");
+  const message = document.getElementById("update-message");
 
-  // Utility: safely show only the relevant mood image
   function showMood(progress) {
     happyGif.style.display = "none";
     veryAngyGif.style.display = "none";
@@ -23,13 +21,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Core: fetch user savings progress from Flask route
   async function updateFill() {
     try {
       const response = await fetch("/savings_progress");
       const data = await response.json();
 
-      // If there’s no savings record yet
       if (!data.has_savings) {
         fill.style.height = "0%";
         percentage.textContent = "0% saved";
@@ -37,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      const progress = Math.min(data.progress, 100); // cap at 100
+      const progress = Math.min(data.progress, 100);
       fill.style.height = progress + "%";
       percentage.textContent = `${progress}% saved`;
       showMood(progress);
@@ -47,7 +43,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Initial call and periodic refresh
+  // Submit form to add to savings
+  savingsForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const amount = parseFloat(amountInput.value);
+    if (!amount || amount <= 0) return;
+
+    try {
+      const res = await fetch("/add_savings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        message.textContent = "Savings updated successfully!";
+        amountInput.value = "";
+        updateFill(); // refresh the phone fill
+      } else {
+        message.textContent = "Failed to update savings.";
+      }
+    } catch (err) {
+      console.error("Error adding savings:", err);
+      message.textContent = "Error updating savings.";
+    }
+  });
+
   updateFill();
   setInterval(updateFill, 5000);
 });
