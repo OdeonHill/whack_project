@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interest Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+ 
+
+</head>
+<body>
+<header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
+    </header>
+<div class="login-container">
+    <div class ="login-form">
+    <h1 class="main-header">Interest Calculator</h1>
+    <form id="interestForm" onsubmit="setUpAccount(event)">
+        <label class="main-paragraph" for="aer">AER:</label>
+        <input type="number" id="aer" name="interestForm" required>
+
+        <label class="main-paragraph" for="balance">Starting Balance:</label>
+        <input type="number" id="balance" name="interestForm" required>
+
+        <label class="main-paragraph" for="opened">Date opened:</label>
+        <input type="date" id="opened" name="interestForm" required>
+
+        <label class="main-paragraph" for="closed">Date of maturity:</label>
+        <input type="date" id="closed" name="interestForm" required>
+
+
+        <button class="login-btn"type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+</div>
+</div>
+<div id="balanceout" class="result"></div>
+<div id="returnout" class="result"></div>
+<div class="login-container">
+    <div class ="login-form">
+    <h1 class="main-header">Interest Calculator</h1>
+    <form id="addForm" onsubmit="addMoneyForm(event)">
+        
+        <label class="main-paragraph" for="amount">Payment Amount:</label>
+        <input type="number" id="amount" name="addForm" required>
+
+        <label class="main-paragraph" for="opened">Date of payment:</label>
+        <input type="date" id="pay_date" name="addForm" required>
+
+        <button class="login-btn"type="submit">Submit</button>
+    </form>
+
+    <div id="result" class="result"></div>
+</div>
+</div>
+
+<script>
+let aer = 0;
+let balance = 0;
+let exp_return = 0;
+let open_date;
+let mature_date;
+function setUpAccount(event) {
+    event.preventDefault();
+    aer = parseFloat(document.getElementById('aer').value);
+    balance = parseFloat(document.getElementById('balance').value);
+    const open_date_str = document.getElementById('opened').value;
+    if(!open_date_str){
+        document.getElementById("result").innerHTML = "<p>Enter a open date</p>";
+    }
+    open_date = new Date(open_date_str)
+    if(isNaN(open_date.getTime())){
+        document.getElementById("result").innerHTML = "<p>Invalid open date entered</p>";
+    }
+
+    const closed_date_str = document.getElementById('closed').value;
+    if(!closed_date_str){
+        document.getElementById("result").innerHTML = "<p>Enter a maturity date</p>";
+    }
+    mature_date = new Date(closed_date_str)
+    if(isNaN(open_date.getTime())){
+        document.getElementById("result").innerHTML = "<p>Invalid maturity date entered</p>";
+    }
+    
+    
+
+    if (isNaN(aer) || isNaN(balance)) {
+        document.getElementById("result").innerHTML = '<p>Please enter valid numbers for salary and spending.</p>';
+        return;
+    }
+
+    exp_return = addMoney(0,aer, mature_date - open_date, balance,mature_date - open_date);
+    output();
+}
+
+function addMoneyForm(event){
+    event.preventDefault();
+    amountToAdd = parseFloat(document.getElementById('amount').value);
+
+    const payment_date_str = document.getElementById('pay_date').value;
+    if(!payment_date_str){
+        document.getElementById("result").innerHTML = "<p>Enter a payment date</p>";
+    }
+    const paymentDate = new Date(payment_date_str);
+    if(isNaN(paymentDate.getTime())){
+        document.getElementById("result").innerHTML = "<p>Invalid payment date entered</p>";
+    }
+
+    if(isNaN(amountToAdd)){
+        document.getElementById("result").innerHTML = "<p>Enter an amount</p>";
+
+    }
+
+    balance += amountToAdd;
+    exp_return = addMoney(exp_return, aer, mature_date - paymentDate, amountToAdd, mature_date - open_date);
+    output();
+}
+
+function output(){
+    document.getElementById("balanceout").innerHTML = `<p>£ ${balance.toFixed(2)}</p>`;
+    document.getElementById("returnout").innerHTML = `<p>£ ${exp_return.toFixed(2)}</p>`;
+
+}
+
+/**
+ * Returns the scaling interest earnt over a given number of payments, given AER rate and a number of yearly payments
+ * @param {*} aer - Annual Equivalent interest rate, as a percentage (e.g. 5%)
+ * @param {*} payments - Number of payments made (i.e. days until account matures)
+ * @param {*} yearlyPayments - Number of payments that would be made in a year (usually 365)
+ * @returns 
+ */
+function interest(aer, payments, yearlyPayments){
+  return (aer/100 + 1)**(payments/yearlyPayments);
+}
+
+/**
+ * Returns the new expected return value for an account given its original value, AER, days left in year and a new amount added to the account
+ * @param {*} currentReturn The amount currently predicted to be in the account when it matures (including interest)
+ * @param {*} AER Annual Equivalent interest rate, as a percentage (e.g. 5%)
+ * @param {*} daysleftinyear Number of days left until account matures (number of payments)
+ * @param {*} amountAdded Amount of money added in this payment
+ * @returns 
+ */
+function addMoney(currentReturn, AER, daysleftinyear, amountAdded, paymentsInYear){
+  return currentReturn + amountAdded * interest(AER, daysleftinyear, paymentsInYear);
+}
+
+/**
+ * Returns the new expected return value for an account given its original value, AER, days left in year and an amount removed from the account
+ * @param {*} currentReturn The amount currently predicted to be in the account when it matures (including interest)
+ * @param {*} AER Annual Equivalent interest rate, as a percentage (e.g. 5%)
+ * @param {*} daysleftinyear Number of days left until account matures (number of payments)
+ * @param {*} amountAdded Amount of money removed in this payment
+ * @returns 
+ */
+function removeMoney(currentReturn, AER, daysleftinyear, amountRemoved){
+  return currentReturn - amountAdded * interest(AER, daysleftinyear, 365);
+}
+</script>
+
+</body>
+</html>
