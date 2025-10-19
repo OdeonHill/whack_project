@@ -1,6 +1,6 @@
 from functools import wraps  # <-- Add this import
 from flask import request, Response
-from flask import Blueprint, render_template, make_response
+from flask import Blueprint, render_template, make_response, jsonify
 from flask_login import current_user
 from .models import *
 
@@ -27,7 +27,7 @@ def no_cache(f):
 
 @views.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("phone.html")
 
 @views.route('/dashboard')
 def dashboard():
@@ -46,6 +46,24 @@ def lessons():
 @views.route('/tracker')
 def tracker():
     return render_template("tracker.html")
+
+@views.route('savings_progress')
+def savings_progress():
+    saving = Savings.query.filter_by(user_id=current_user.id).first()
+    if not saving:
+        return jsonify({
+            'has_savings': False,
+            'image': '/static/images/veryangy.gif'
+        })
+    progress = (saving.current_amount / saving.total_amount) * 100 if saving.total_amount > 0 else 0
+    return jsonify({
+        'has_savings': True,
+        'goal': saving.total_amount,
+        'current': saving.current_amount,
+        'progress': round(progress,2)
+
+    })
+    
 
 @views.route('/investing_lesson')
 def investing_lesson():
