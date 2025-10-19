@@ -100,6 +100,10 @@ def credit_score():
 def phone_demo():
     return render_template("phone.html")
 
+@views.route('/signup')
+def signup():
+    return render_template("signup.html")
+
 @views.route('/submit_lesson', methods=['POST'])
 def submit_lesson():
     # Get the data from the form submission
