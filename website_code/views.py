@@ -59,6 +59,10 @@ def phishing_lesson():
 def savings_lesson():
     return render_template("savings_lesson.html")
 
+@views.route('/credit_lesson')
+def credit_lesson():
+    return render_template("credit_lesson.html")
+
 @views.route('/login')
 def login():
     return render_template("login.html")
