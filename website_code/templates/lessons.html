@@ -30,13 +30,19 @@
                 <!-- Lesson 2 -->
                 <button class="{% if 2 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.investing_lesson') }}'">
                     <div class="lesson-icon">💸</div>
-                    <div class="lesson-text-left">Investing 101</div>
+                    <div class="lesson-text-left">Investing Basics</div>
                 </button>
 
                 <!-- Lesson 3 -->
                 <button class="{% if 3 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.phishing_lesson') }}'">
                     <div class="lesson-icon">📈</div>
                     <div class="lesson-text-right">Phishing 101</div>
+                </button>
+
+                <!-- Lesson 4 -->
+                <button class="{% if 4 in completed_lessons %}lesson-completed{% else %}lesson{% endif %}" onclick="window.location.href='{{ url_for('views.credit_lesson') }}'">
+                    <div class="lesson-icon">💳</div>
+                    <div class="lesson-text-right">What is Credit?</div>
                 </button>
 
                 <button class="lesson-last">

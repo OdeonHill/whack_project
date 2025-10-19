@@ -51,24 +51,26 @@
                 Before making any investment, it’s important to assess your financial goals, risk tolerance, and time frame. You should also consider working with a financial advisor to create a diversified investment strategy that suits your needs.
             </p>
 
-            <div style="margin: auto;">
-             <p class="quiz">Which of these is the least risky?</p>
-             <p id = "output1" class="quiz"></p>
-            <form id = "q1" class="quiz">
-                <label for = "crypto">Cryptocurrency</label>
+            <div class="login-container">
+            <div class="login-form">
+             <p class="main-paragraph">Which of these is the least risky?</p>
+             <p id = "output1" class="answer"></p>
+            <form id = "q1" >
+                <label class="main-paragraph" for = "crypto">Cryptocurrency</label>
                 <input type = "radio" id = "crypto" name = "q1" value = "b">
                 <br>
-                <label for = "bonds">Bonds</label>
+                <label class="main-paragraph" for = "bonds">Bonds</label>
                 <input type = "radio" id = "bonds" name = "q1" value = "c">
                 <br>
-                 <label for = "saving">Savings account</label>
+                 <label class="main-paragraph" for = "saving">Savings account</label>
                 <input type = "radio" id = "saving" name = "q1" value = "a">
                 <br>
-                <label for = "stocks">Stocks</label>
+                <label class="main-paragraph" for = "stocks">Stocks</label>
                 <input type = "radio" id = "stocks" name = "q1" value = "c">
                 <br>
-                <button type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
+                <button class="login-btn" type = "button" onClick = "getQ(1, 'saving', 'output1')">Submit</button>
 		    </form>
+            </div>
             </div>
              
 

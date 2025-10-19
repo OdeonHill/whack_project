@@ -40,25 +40,27 @@
                 • Credential Harvesting Websites: Fake login pages designed to steal usernames and passwords.
             </p>
 
-            <div style="margin: auto;">
-             <p class="quiz">Bob receives an email from an address she knows to belong to Alice's company. It is formatted similarly to other emails that he has received from Alice's company in the past, but the page linked is not Alice's website. This could be an example of what specific kind of attack? </p>
-             <p id = "output1" class="quiz"></p>
-            <form id = "q1" class="quiz">
-                <label for = "cred">Credential Harvesting</label>
+            <div class="login-container" >
+                <div class="login-form">
+             <p class="main-paragraph">Bob receives an email from an address she knows to belong to Alice's company. It is formatted similarly to other emails that he has received from Alice's company in the past, but the page linked is not Alice's website. This could be an example of what specific kind of attack? </p>
+             <p class="answer" id = "output1" ></p>
+            <form id = "q1">
+                <label class="main-paragraph" for = "cred">Credential Harvesting</label>
                 <input type = "radio" id = "cred" name = "q1" value = "b">
                 <br>
-                <label for = "smish">Smishing</label>
+                <label class="main-paragraph" for = "smish">Smishing</label>
                 <input type = "radio" id = "smish" name = "q1" value = "c">
                 <br>
-                 <label for = "spear">Spear Fishing</label>
+                 <label class="main-paragraph" for = "spear">Spear Fishing</label>
                 <input type = "radio" id = "spear" name = "q1" value = "a">
                 <br>
-                <label for = "clone">Clone Phishing</label>
+                <label class="main-paragraph" for = "clone">Clone Phishing</label>
                 <input type = "radio" id = "clone" name = "q1" value = "c">
                 <br>
-                <button type = "button" onClick = "getQ(1, 'clone', 'output1')">Submit</button>
+                <button class="login-btn" type = "button" onClick = "getQ(1, 'clone', 'output1')">Submit</button>
 		    </form>
 
+             </div>
              </div>
 
 		
@@ -81,24 +83,26 @@
                 • Enable multi-factor authentication (MFA) wherever possible, it blocks many account takeovers. <br>
             </p>
 
-             <p class="quiz">Which of these should you not do when receiving communication in order to prevent fishing?</p>
-             <p id = "output2" class="quiz"></p>
-            <div style="margin: auto;">
-            <form id = "q2" class="quiz">
-                <label for = "spelling">Carefully check spelling</label>
+            <div class="login-container" >
+            <div class="login-form">
+             <p class="main-paragraph">Which of these should you not do when receiving communication in order to prevent fishing?</p>
+             <p class= "answer" id = "output2"></p>
+            <form id = "q2">
+                <label class="main-paragraph" for = "spelling">Carefully check spelling</label>
                 <input type = "radio" id = "spelling" name = "q2" value = "b">
                 <br>
-                <label for = "links">Click links immediately</label>
+                <label class="main-paragraph" for = "links">Click links immediately</label>
                 <input type = "radio" id = "links" name = "q2" value = "c">
                 <br>
-                 <label for = "channel">Confirm whether suspicious activity is genuine by another channel </label>
+                 <label class="main-paragraph" for = "channel">Confirm whether suspicious activity is genuine by another channel </label>
                 <input type = "radio" id = "channel" name = "q2" value = "a">
                 <br>
-                <label for = "urgent">Be aware of urgent requests for sensitive information</label>
+                <label class="main-paragraph" for = "urgent">Be aware of urgent requests for sensitive information</label>
                 <input type = "radio" id = "urgent" name = "q2" value = "c">
                 <br>
-                <button type = "button" onClick = "getQ(2, 'links', 'output2')">Submit</button>
+                <button class="login-btn" type = "button" onClick = "getQ(2, 'links', 'output2')">Submit</button>
 		    </form>
+            </div>
             </div>
              
     </main>

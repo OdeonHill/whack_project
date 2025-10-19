@@ -1,0 +1,109 @@
+<!DOCTYPE html><!--define as HTML 5-->
+<html>
+	<head><!--don't need to indent or space - could be all one line - nicer to read like this tho-->
+		<title>What is Credit?</title><!--Tab name in browser-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	</head><!--within head is links to other files and info about the page-->
+
+	<body><!--anything within body appears on the page-->
+	
+	  <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="logo"><img src="{{ url_for('static', filename='images/happy.gif') }}" onclick="window.location.href='{{ url_for('views.dashboard') }}'" alt="Lett-us Logo"><p class="logo-txt">Lett-us Save!</p></div>
+        <button class="logout-btn" onclick="window.location.href='{{ url_for('auth.logout') }}'">Logout</button>
+    </header>
+    
+    <main>
+    <h1 class="main-header"> 
+        Types of Credit Accounts
+    </h1>
+    <p class="main-paragraph"> 
+        There are various credit products, each designed to meet different financial needs. Whether you are looking to build your credit, earn rewards, or simply manage everyday spending, understanding your options is key to making the right choice. A good example company for credit is Capital One. They offer a variety of credit accounts that suit your needs, helping you achieve your financial goals with ease.
+    </p>
+
+    <h3 class="sub-header"> 
+        Standard Credit Cards
+    </h3>
+    <p class="main-paragraph"> 
+        Standard credit cards are the most common type of credit product, offering a revolving line of credit that you can use to make purchases. These cards generally come with a credit limit, and you can carry a balance from month to month, paying it off in full or over time. Capital One’s standard credit cards offer competitive interest rates, low fees, and the flexibility to use your card virtually anywhere.
+    </p>
+
+    <p class="main-paragraph"> 
+        What’s the benefit of using a credit card? When you use a credit card responsibly, you build your credit history and improve your credit score, making it easier to access better financial products in the future. 
+    </p>
+
+    <h3 class="sub-header"> 
+        Rewards Credit Cards
+    </h3>
+    <p class="main-paragraph">
+        Rewards credit cards are designed for people who want to earn rewards, such as cashback, travel miles, or points, on their everyday purchases. Capital One’s rewards credit cards provide the perfect blend of earning potential and flexibility, allowing you to redeem your rewards for cash, gift cards, travel, or other valuable rewards.
+    </p>
+    
+    <h3 class="sub-header">
+        0% Introductory APR Credit Cards
+    </h3>
+    <p class="main-paragraph">
+        A 0% introductory APR credit card offers a temporary break from interest on purchases and balance transfers, typically for the first 12 to 18 months. This is ideal for those who want to make a large purchase or transfer a balance from another high-interest card without paying interest for a period of time. Capital One’s 0% APR credit cards offer this benefit with no annual fee, making it easier for you to manage your finances without the pressure of accumulating interest.
+    </p>
+
+    <h2 class="sub-header"> 
+        Comparing Credit Cards
+    </h2>
+    <p class="main-paragraph">
+        When comparing credit cards, consider factors such as interest rates (APR), fees, rewards programs, and any introductory offers. Some cards are better for earning rewards, while others may be ideal for balance transfers or building credit. Capital One offers a variety of credit cards with competitive rates, flexible terms, and built-in security features, allowing you to choose the one that best fits your financial needs and goals.
+    </p>
+
+    <h2 class="sub-header"> 
+        Other Credit Products
+    </h2>
+    <p class="main-paragraph">
+        In addition to traditional credit cards, there are other credit products designed for specific purposes. For example, Capital One offers personal loans, which allow you to access a lump sum of money for major expenses like home improvements, medical bills, or consolidating debt. Personal loans typically have fixed rates and terms, so you’ll know exactly what to expect in terms of repayment. Additionally, Capital One offers auto loans for purchasing or refinancing your vehicle, helping you find the best deal for your transportation needs.
+    </p>
+
+    <p class="main-paragraph">
+        No matter which credit product you choose, it’s important to manage it responsibly. By staying within your credit limit, paying on time, and keeping your balance low, you can enjoy the benefits of credit while improving your financial health. Capital One provides resources such as credit monitoring and financial education tools to help you make informed decisions.
+    </p>
+
+    <div class="login-container">
+            <div class="login-form">
+             <p class="main-paragraph">Which of these is ideal for someone who wants to earn rewards like cashback, travel miles, or points?</p>
+             <p id = "output1" class="answer"></p>
+            <form id = "q1" >
+                <label class="main-paragraph" for = "crypto">Standard Credit Card</label>
+                <input type = "radio" id = "standard" name = "q1" value = "b">
+                <br>
+                <label class="main-paragraph" for = "bonds">0% Introductory APR Credit Card</label>
+                <input type = "radio" id = "0" name = "q1" value = "c">
+                <br>
+                 <label class="main-paragraph" for = "saving">Personal Loan</label>
+                <input type = "radio" id = "personal" name = "q1" value = "a">
+                <br>
+                <label class="main-paragraph" for = "stocks">Rewards Credit Card</label>
+                <input type = "radio" id = "rewards" name = "q1" value = "c">
+                <br>
+                <button class="login-btn" type = "button" onClick = "getQ(1, 'rewards', 'output1')">Submit</button>
+		    </form>
+            </div>
+            </div>
+</main>
+
+
+
+		
+	<script>
+        
+        function getQ(q_num, correct, out){
+            console.log("Enter function");
+            if(document.getElementById(correct).checked == true){
+                console.log("Correct");
+                document.getElementById(out).innerHTML="Correct!";
+                //may need db call to update user progress - using q_num param
+            }else{
+                document.getElementById(out).innerHTML="Incorrect";
+                console.log("Incorrect");
+            }
+        }
+    </script>
+		
+	</body>
+</html>
