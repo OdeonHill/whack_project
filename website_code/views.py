@@ -70,3 +70,7 @@ def login():
 @views.route('/budget_calculator')
 def budget_calculator():
     return render_template("budget_calculator.html")
+
+@views.route('/credit_score')
+def credit_score():
+    return render_template("credit_score.html")
