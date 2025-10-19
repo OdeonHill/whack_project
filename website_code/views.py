@@ -55,12 +55,15 @@ def savings_progress():
             'has_savings': False,
             'image': '/static/images/veryangy.gif'
         })
-    progress = (saving.current_amount / saving.total_amount) * 100 if saving.total_amount > 0 else 0
+    total = saving.total_amount
+    current = saving.current_amount
+
+    progress = (current / total) * 100 if total > 0 else 0
     return jsonify({
         'has_savings': True,
-        'goal': saving.total_amount,
-        'current': saving.current_amount,
-        'progress': round(progress,2)
+        'goal': total,
+        'current': current,
+        'progress': round(progress, 2)
 
     })
     

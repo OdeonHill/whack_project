@@ -136,6 +136,55 @@
             background-color: #76e076;
         }
     </style>
+<script>
+    // Map each goal to its destination URL
+    const goalLinks = {
+        "Save for a Phone": "{{ url_for('views.phone_demo') }}",
+    };
+
+    document.getElementById('add-btn').addEventListener('click', function() {
+        const select = document.getElementById('goal-select');
+        const selectedGoal = select.value;
+
+        if (selectedGoal !== "") {
+            addGoalToList(selectedGoal);
+            select.value = "";
+        } else {
+            alert("Please select a savings goal to add!");
+        }
+    });
+
+    // Dynamically adds the goal with a link + remove button
+    function addGoalToList(goal) {
+        const list = document.getElementById('goal-list');
+        const listItem = document.createElement('li');
+
+        // goal title
+        const goalText = document.createElement('span');
+        goalText.textContent = goal;
+        listItem.appendChild(goalText);
+
+        // link to page
+        if (goalLinks[goal]) {
+            const link = document.createElement('a');
+            link.href = goalLinks[goal];
+            link.textContent = "View progress →";
+            link.className = "goal-link";
+            listItem.appendChild(link);
+        }
+
+        // remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = "Remove";
+        removeButton.className = 'remove-btn';
+        removeButton.onclick = function() {
+            list.removeChild(listItem);
+        };
+
+        listItem.appendChild(removeButton);
+        list.appendChild(listItem);
+    }
+</script>
 
 </body>
 </html>
